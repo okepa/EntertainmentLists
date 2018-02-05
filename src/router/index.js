@@ -4,8 +4,9 @@ import Home from '@/components/Home/Home.vue'
 import Login from '@/components/Login/Login.vue'
 import Register from '@/components/Register/Register.vue'
 import Books from '@/components/Books/Books.vue'
+import Book from '@/components/Book/Book.vue'
 import AuthenticationService from '@/services/AuthenticationService'
-import { EventBus } from '../main';
+import { EventBus } from '../main'
 
 Vue.use(Router)
 
@@ -47,6 +48,12 @@ export default new Router({
     component: Books,
     beforeEnter: checkLoginStatus
   },
+  {
+    path: '/book/:bookid',
+    name: 'Book',
+    component: Book,
+    beforeEnter: checkLoginStatus
+  }
   ]
 })
 

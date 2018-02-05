@@ -20,9 +20,12 @@
                 <v-flex>
                     <v-data-table v-bind:headers="headers" :items="books" hide-actions class="elevation-1">
                         <template slot="items" slot-scope="props">
-                            <td class="text-xs-left">{{ props.item.volumeInfo.title }}</td>
-                            <td class="text-xs-left">{{ props.item.volumeInfo.authors[0] }}</td>
-                            <td class="text-xs-left">{{ props.item.volumeInfo.description }}</td>
+                            <tr @click="viewBook(props.item.id)">
+                                <td class="text-xs-left">{{ props.item.volumeInfo.title }}</td>
+                                <td class="text-xs-left">{{ props.item.volumeInfo.authors[0] }}</td>
+                                <td class="text-xs-left">{{ props.item.volumeInfo.publisher }}</td>
+                                <td class="text-xs-left">{{ props.item.volumeInfo.description }}</td>
+                            </tr>
                         </template>
                     </v-data-table>
                     <v-pagination v-bind:length.number="15" v-model="page"></v-pagination>

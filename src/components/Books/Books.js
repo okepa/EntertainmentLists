@@ -10,7 +10,7 @@ export default class Books extends Vue {
     author = null;
     publisher = null;
     startIndex = 0;
-    headers = [{text: "Title", value:"title"}, {text: "Author", value:"authors"}, {text: "Description", value:"description"} ]
+    headers = [{text: "Title", value:"title"}, {text: "Author", value:"authors"}, {text: "Publisher", value:"publisher"}, {text: "Description", value:"description"} ]
     created(){
         this.getBooks();
     }
@@ -23,16 +23,21 @@ export default class Books extends Vue {
 
     getBooks(){
         var search = null;
-        if(this.title != null) search += `intitle:${this.title}+`;
-        if(this.author != null) search += `inauthor:${this.author}+`;
-        if(this.publisher) search += `inpublisher:${this.publisher}+`;
+        if(this.title != null) search += `intitle:${this.title}`;
+        if(this.author != null) search += `+inauthor:${this.author}`;
+        if(this.publisher) search += `+inpublisher:${this.publisher}`;
 
-        BooksHttpRequestsService.getRequest(`${search}&startIndex=${this.startIndex}`).then(result => {
+        BooksHttpRequestsService.getBooksRequest(`${search}&startIndex=${this.startIndex}`).then(result => {
             console.log(result.data.items);
             this.books = result.data.items;
         }).catch(err => {
 
         });
+    }
+
+    viewBook(id){
+        console.log("viewBook")
+        this.$router.push(`/book/${id}`);
     }
 
 }
