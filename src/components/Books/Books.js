@@ -36,7 +36,6 @@ export default class Books extends Vue {
     }
 
     viewBook(id){
-        console.log("viewBook")
         this.$router.push(`/book/${id}`);
     }
 

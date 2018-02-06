@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar dark color="primary">
-      <v-toolbar-title>Name</v-toolbar-title>
+      <v-toolbar-title>Entertainment List</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer" dark></v-toolbar-side-icon>
       <v-toolbar-items class="hidden-sm-and-down" v-for="nav in navigation" :key="nav.title">
