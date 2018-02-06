@@ -23,6 +23,8 @@
                                     <p>
                                         {{category}}</p>
                                 </div>
+                                <p>
+                                    <span class="bold text-xs-left">Published Date:</span> {{book.publishedDate}}</p>
                             </v-flex>
                         </v-card-text>
                     </v-card>

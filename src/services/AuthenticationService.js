@@ -14,6 +14,7 @@ export default class AuthenticationService{
     HttpRequestsService.postRequest("login", { username: email, password: pass }).then(response => {
       if (response.data.success) {
         Vue.cookie.set('cookie', response.data.token, 1);
+        Vue.cookie.set('username', response.data.username, 1);
         if (cb) cb(true)
         this.onChange(true)
       } else {
