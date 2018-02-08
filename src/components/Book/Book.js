@@ -10,8 +10,12 @@ export default class Book extends Vue {
     readingStatus = ["Reading", "Read", "Plan To Read", "Abandoned"];
     readingRating = [1, 2, 3, 4, 5];
     bookList = {
-        status: "",
-        rating: null
+        bookId: "",
+        bookTitle: "",
+        bookAuthor: [],
+        bookPubisher: "",
+        bookStatus: "",
+        bookRating: null
     }
 
     created() {
@@ -22,6 +26,10 @@ export default class Book extends Vue {
     getBook() {
         BooksHttpRequestsService.getBookRequest(`${this.bookId}`).then(result => {
             this.book = result.data.volumeInfo;
+            this.bookList.bookId = this.bookId;
+            this.bookList.bookTitle = this.book.title;
+            this.bookList.bookAuthor = this.book.authors;
+            this.bookList.bookPubisher = this.book.publisher;
             console.log(this.book);
         }).catch(err => {
 
@@ -29,7 +37,7 @@ export default class Book extends Vue {
     }
 
     listSubmition() {
-        HttpRequestsService.postRequest("", this.bookList).then(result => {
+        HttpRequestsService.postRequest("books", this.bookList).then(result => {
             
         }).catch(err => {
 

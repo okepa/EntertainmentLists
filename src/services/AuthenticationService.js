@@ -1,10 +1,8 @@
-/* globals localStorage */
 import Vue from 'vue'
 import HttpRequestsService from './HttpRequestsService'
 
 export default class AuthenticationService{
   static login(email, pass, cb) {
-    
     cb = arguments[arguments.length - 1]
     if (Vue.cookie.get('cookie')) {
       if (cb) cb(true)
@@ -14,7 +12,7 @@ export default class AuthenticationService{
     HttpRequestsService.postRequest("login", { username: email, password: pass }).then(response => {
       if (response.data.success) {
         Vue.cookie.set('cookie', response.data.token, 1);
-        Vue.cookie.set('username', response.data.username, 1);
+        Vue.cookie.set('usernameId', response.data.usernameId, 1);
         if (cb) cb(true)
         this.onChange(true)
       } else {
@@ -32,6 +30,7 @@ export default class AuthenticationService{
 
   static logout(cb) {
     Vue.cookie.delete('cookie');
+    Vue.cookie.delete('usernameId')
     if (cb) cb()
     this.onChange(false)
   }

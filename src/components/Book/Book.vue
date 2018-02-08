@@ -6,7 +6,7 @@
                 <v-flex xs3 class="text-xs-left">
                     <v-card>
                         <v-flex xs12>
-                            <v-card-media :src="book.imageLinks.thumbnail"></v-card-media>
+                            <!-- <v-card-media :src="book.imageLinks.thumbnail"></v-card-media> -->
                             <!-- <img :src="book.imageLinks.thumbnail"> -->
                         </v-flex>
                         <v-card-text>
@@ -54,10 +54,10 @@
                         </v-flex>
                         <v-card-text>
                             <v-flex xs12>
-                                <v-select v-bind:items="readingStatus" v-model="bookList.status" label="Status" class="input-group--focused" item-value="status"></v-select>
+                                <v-select v-bind:items="readingStatus" v-model="bookList.bookStatus" label="Status" class="input-group--focused" item-value="status"></v-select>
                             </v-flex>
                             <v-flex xs12>
-                                <v-select v-bind:items="readingRating" v-model="bookList.rating" label="Rating" class="input-group--focused" item-value="rating"></v-select>
+                                <v-select v-bind:items="readingRating" v-model="bookList.bookRating" label="Rating" class="input-group--focused" item-value="rating"></v-select>
                             </v-flex>
                             <v-flex xs12>
                                 <v-btn @click="listSubmition" color="primary">Submit</v-btn>

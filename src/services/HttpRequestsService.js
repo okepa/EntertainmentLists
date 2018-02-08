@@ -5,7 +5,7 @@ export default class HttpRequestsService{
     static getRequest(route) {
         return new Promise((resolve, reject) => {
             var headers = {
-                headers: { 'Access-Control-Allow-Origin': '*', "x-access-token": Vue.cookie.get('cookie') }
+                headers: { 'Access-Control-Allow-Origin': '*', "x-access-token": Vue.cookie.get('cookie'), "username-id": Vue.cookie.get('usernameId') }
             }
             axios.get(process.env.API_URL + route, headers)
                 .then((response) => {
@@ -18,10 +18,9 @@ export default class HttpRequestsService{
     }
 
     static postRequest(route, item) {
-        
         return new Promise((resolve, reject) => {
             var headers = {
-                headers: { 'Access-Control-Allow-Origin': '*', "x-access-token": Vue.cookie.get('cookie') }
+                headers: { 'Access-Control-Allow-Origin': '*', "x-access-token": Vue.cookie.get('cookie'), "username-id": Vue.cookie.get('usernameId') }
             }
             axios.post(process.env.API_URL + route, item, headers)
                 .then((response) => {
