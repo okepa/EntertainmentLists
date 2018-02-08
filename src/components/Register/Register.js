@@ -1,35 +1,24 @@
 import Vue from 'vue'
 import { Component, Watch } from 'vue-property-decorator'
 import HttpRequestsService from '../../services/HttpRequestsService'
+import { EventBus } from '../../main'
 
 @Component
 export default class Login extends Vue {
-    registration = {username: "", email: "", password: "", confirmPassword: ""}
-    success = false;
-    error = false;
-    message = "";
+    registration = { username: "", email: "", password: "", confirmPassword: "" }
 
     register() {
         this.$validator.validateAll().then((result) => {
-            if(result){
+            if (result) {
                 HttpRequestsService.postRequest("register", this.registration).then((response) => {
-                    this.message = "Registration successfull"
-                    this.success = true;
-                    this. registration = {username: "", email: "", password: "", confirmPassword: ""}
-                    setTimeout(() => { 
-                        this.success = false;
-                        this.$router.push("/login")
-                    }, 2000);                
+                    EventBus.$emit('toast', { type: "success", text: "Registration successful" });
+                    this.registration = { username: "", email: "", password: "", confirmPassword: "" }
+                    this.$router.push("/login")
                 }).catch(err => {
-                    this.message = "Oops something went wrong"
-                    this.error = true;
+                    EventBus.$emit('toast', { type: "error", text: "Something went wrong" });
                 });
-            }else{
-                this.message = "Please fill in required fields"
-                this.error = true;
-                setTimeout(() => { 
-                    this.error = false;
-                }, 3000);
+            } else {
+                EventBus.$emit('toast', { type: "error", text: "Please fill in required fields" });
             }
         });
     }

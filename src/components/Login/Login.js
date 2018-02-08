@@ -2,13 +2,12 @@ import Vue from 'vue'
 import { Component, Watch } from 'vue-property-decorator'
 import HttpRequestsService from '../../services/HttpRequestsService'
 import AuthenticationService from '../../services/AuthenticationService'
+import { EventBus } from '../../main'
 
 @Component
 export default class Login extends Vue {
-    email = null;
+    username = null;
     pass = null;
-    error = false;
-    message = "Incorrect username and password"
     loggedIn = AuthenticationService.loggedIn()
 
     created() {
@@ -18,12 +17,9 @@ export default class Login extends Vue {
     }
 
     login() {
-        AuthenticationService.login(this.email, this.pass, loggedIn => {
+        AuthenticationService.login(this.username, this.pass, loggedIn => {
             if (!loggedIn) {
-                this.error = true
-                setTimeout(() => { 
-                    this.error = false;
-                }, 3000);
+                EventBus.$emit('toast', { type: "error", text: "Incorrect username and password" });
             } else {
                 this.$router.replace(this.$route.query.redirect || '/home')
             }

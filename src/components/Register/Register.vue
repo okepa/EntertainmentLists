@@ -1,11 +1,5 @@
 <template>
     <div>
-        <v-alert color="success" icon="success" dismissible v-model="success">
-            {{message}}
-        </v-alert>
-        <v-alert color="error" icon="error" dismissible v-model="error">
-            {{message}}
-        </v-alert>
         <v-container align-content-center>
             <v-layout row>
                 <v-flex xs6 offset-xs3 @keyup.enter="login">

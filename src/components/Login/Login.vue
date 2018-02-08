@@ -1,8 +1,5 @@
 <template>
     <div>
-        <v-alert color="error" icon="error" dismissible v-model="error">
-            {{message}}
-        </v-alert>
         <v-container align-content-center>
             <v-layout row>
                 <v-flex xs6 offset-xs3 @keyup.enter="login">
@@ -17,7 +14,7 @@
                         <v-card-text>
                             <v-layout row>
                                 <v-flex class="ma-3">
-                                    <v-text-field name="Email" label="Email" class="input-group--focused" v-model="email" ></v-text-field>
+                                    <v-text-field name="Username" label="Username" class="input-group--focused" v-model="username" ></v-text-field>
                                 </v-flex>
                                 </v-layout>
                                 <v-layout row>

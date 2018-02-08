@@ -10,7 +10,7 @@ export default class Books extends Vue {
     author = null;
     publisher = null;
     startIndex = 0;
-    headers = [{text: "Title", value:"title"}, {text: "Author", value:"authors"}, {text: "Publisher", value:"publisher"}, {text: "Description", value:"description"} ]
+    headers = [{text: "Title", value:"title", align:"left"}, {text: "Author", value:"authors", align:"left"}, {text: "Publisher", value:"publisher", align:"left"}, {text: "Description", value:"description", align:"left"} ]
     created(){
         this.getBooks();
     }
@@ -23,7 +23,7 @@ export default class Books extends Vue {
 
     getBooks(){
         var search = null;
-        if(this.title != null) search += `intitle:${this.title}`;
+        if(this.title != null) search += `+intitle:${this.title}`;
         if(this.author != null) search += `+inauthor:${this.author}`;
         if(this.publisher) search += `+inpublisher:${this.publisher}`;
 

@@ -4,6 +4,7 @@ import axios from 'axios';
 export default class BooksHttpRequestsService{
     static getBooksRequest(data) {
         return new Promise((resolve, reject) => {
+            console.log(`${process.env.BOOKS_VOLUMES_API}?q=${data}&langRestrict=en&${process.env.KEY}`)
             axios.get(`${process.env.BOOKS_VOLUMES_API}?q=${data}&langRestrict=en&${process.env.KEY}`)
                 .then((response) => {
                     resolve(response);
