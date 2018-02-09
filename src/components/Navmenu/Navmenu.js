@@ -9,6 +9,6 @@ export default class Navmenu extends Vue {
         { title: 'Home', route: '/home' },
         { title: 'Register', route: '/register' },
         { title: 'Books', route: '/books' },
-        { title: 'BookList', route: '/book-list'}
+        { title: 'Book List', route: '/book-list'}
       ];
 }
