@@ -7,7 +7,7 @@ import { EventBus } from '../../main'
 @Component
 export default class Book extends Vue {
     bookId;
-    book = null;
+    book = new Object();
     readingStatus = ["Reading", "Read", "Plan To Read", "Abandoned"];
     readingRating = [1, 2, 3, 4, 5];
     bookList = {
@@ -31,6 +31,7 @@ export default class Book extends Vue {
     getBook() {
         BooksHttpRequestsService.getBookRequest(`${this.bookId}`).then(result => {
             this.book = result.data.volumeInfo;
+            console.log(this.book.authors)
             this.bookList.usernameId = Vue.cookie.get('usernameId');
             this.bookList.bookId = this.bookId;
             this.bookList.bookTitle = this.book.title;
@@ -44,13 +45,11 @@ export default class Book extends Vue {
 
     getUserBook() {
         HttpRequestsService.getRequest(`books?b=${this.bookId}`).then(result => {
-            console.log(result)
             if(result.data.bookData != null){
                 this.bookList.bookStatus = result.data.bookData.bookStatus;
                 this.bookList.bookRating = result.data.bookData.bookRating;
             }
         }).catch(err => {
-            console.log("erroe1")
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         });
     }

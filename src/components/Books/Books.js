@@ -17,7 +17,8 @@ export default class Books extends Vue {
 
     @Watch('page')
     onPageChange(val){
-        this.startIndex += 10;
+        console.log(this.page)
+        this.startIndex = this.page * 10 - 10;
         this.getBooks();
     }
 
@@ -28,7 +29,6 @@ export default class Books extends Vue {
         if(this.publisher) search += `+inpublisher:${this.publisher}`;
 
         BooksHttpRequestsService.getBooksRequest(`${search}&startIndex=${this.startIndex}`).then(result => {
-            console.log(result.data.items);
             this.books = result.data.items;
         }).catch(err => {
 
