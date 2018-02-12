@@ -18,13 +18,14 @@
             <!-- Displayed results in data table -->
             <v-layout row>
                 <v-flex>
-                    <v-data-table v-bind:headers="headers" :items="books" hide-actions class="elevation-1">
+                    <v-data-table v-bind:headers="headers" :items="finalBooks" hide-actions class="elevation-1">
                         <template slot="items" slot-scope="props">
                             <tr @click="viewBook(props.item.id)">
                                 <td class="text-xs-left">{{ props.item.volumeInfo.title }}</td>
                                 <td class="text-xs-left">{{ props.item.volumeInfo.authors[0] }}</td>
                                 <td class="text-xs-left">{{ props.item.volumeInfo.publisher }}</td>
                                 <td class="text-xs-left">{{ props.item.volumeInfo.description }}</td>
+                                <td class="text-xs-left">{{ props.item.bookRating }}</td>
                             </tr>
                         </template>
                     </v-data-table>

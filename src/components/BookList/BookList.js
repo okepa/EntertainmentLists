@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { Component, Watch } from 'vue-property-decorator'
 import HttpRequestsService from '../../services/HttpRequestsService'
+import { EventBus } from '../../main'
 
 @Component
 export default class BookList extends Vue {
@@ -21,10 +22,9 @@ export default class BookList extends Vue {
             this.readingBookList = result.data.readingStatus;
             this.readBookList = result.data.readStatus;
             this.planToReadBookList = result.data.planToReadStatus;
-            this.abandonedBookList = result.data.abandonedStatus;
-            
+            this.abandonedBookList = result.data.abandonedStatus;     
         }).catch(err => {
-
+            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })
     }
 }
