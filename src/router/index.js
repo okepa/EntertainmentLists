@@ -78,5 +78,6 @@ function requireAuth(to, from, next) {
 
 function checkLoginStatus(to, from, next){
   EventBus.$emit('loginStatus');
+  EventBus.$emit('navmenuLoginStatus')
   next()
 }
