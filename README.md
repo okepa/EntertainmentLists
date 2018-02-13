@@ -17,6 +17,6 @@
 - [x] Add book to your reading list
 - [x] View you reading list
 - [x] Assign ratings for books
-- [ ] Write reviews for books
-- [ ] View reviews for books
+- [x] Write reviews for books
+- [x] View reviews for books
 

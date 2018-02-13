@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { Component, Watch } from 'vue-property-decorator'
 import BooksHttpRequestsService from '../../services/BooksHttpRequestsService'
 import HttpRequestsService from '../../services/HttpRequestsService'
+import AuthenticationService from '../../services/AuthenticationService'
 import { EventBus } from '../../main'
 
 @Component
@@ -12,7 +13,7 @@ export default class Book extends Vue {
     readingRating = [1, 2, 3, 4, 5];
     bookList = {
         usernameId: null,
-        bookId: "",
+        bookId: this.bookId,
         bookTitle: "",
         bookAuthor: [],
         bookPubisher: "",
@@ -21,36 +22,82 @@ export default class Book extends Vue {
         bookRatingCount: null,
         bookRatingTotal: null
     }
+    reviews = [];
+    review = {
+        usernameId: null,
+        bookId: this.bookId,
+        reviewTitle: "",
+        reviewRating: "",
+        reviewContent: ""
+    };
+    reviewDialog = false;
+    loggedIn = AuthenticationService.loggedIn();
 
     created() {
         this.bookId = this.$route.params.bookid;
         this.getBook();
-        this.getUserBook();
+        this.getReviews();
+        if(!!Vue.cookie.get('usernameId')){
+            this.getUserBookInfo();
+            this.getUserReview();
+        }
+        console.log(this.loggedIn)
     }
 
     getBook() {
         BooksHttpRequestsService.getBookRequest(`${this.bookId}`).then(result => {
             this.book = result.data.volumeInfo;
-            console.log(this.book.authors)
             this.bookList.usernameId = Vue.cookie.get('usernameId');
-            this.bookList.bookId = this.bookId;
             this.bookList.bookTitle = this.book.title;
             this.bookList.bookAuthor = this.book.authors;
             this.bookList.bookPubisher = this.book.publisher;
-            //console.log(this.book);
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         });
     }
 
-    getUserBook() {
+    getUserBookInfo() {
         HttpRequestsService.getRequest(`books?b=${this.bookId}`).then(result => {
-            if(result.data.bookData != null){
+            if (result.data.bookData != null) {
                 this.bookList.bookStatus = result.data.bookData.bookStatus;
                 this.bookList.bookRating = result.data.bookData.bookRating;
             }
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+        });
+    }
+
+    getReviews() {
+        HttpRequestsService.getRequest(`reviews?b=${this.bookId}`).then(result => {
+            this.reviews = result.data.reviews;
+        }).catch(err => {
+            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+        });
+    }
+
+    getUserReview(){
+        HttpRequestsService.getRequest(`review?b=${this.bookId}`).then(result => {
+            if(result.data.review != null){
+                this.review = result.data.review;
+            }
+        }).catch(err => {
+            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });           
+        })
+    }
+
+    postReview() {
+        this.$validator.validateAll({ "Title": this.review.reviewTitle, "Rating": this.review.reviewRating, "Content": this.review.reviewContent }).then((result) => {
+            if (result) {
+                HttpRequestsService.postRequest("review", this.review).then(result => {
+                    this.reviewDialog = !this.reviewDialog;
+                    EventBus.$emit('toast', { type: "success", text: "Review Submitted" });
+                    this.getReviews();
+                }).catch(err => {
+                    EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+                });
+            } else {
+                EventBus.$emit('toast', { type: "error", text: "Please fill in required fields" });
+            }
         });
     }
 
