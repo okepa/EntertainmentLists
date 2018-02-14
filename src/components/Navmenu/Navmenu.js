@@ -10,16 +10,20 @@ export default class Navmenu extends Vue {
     token = null;
 
     navigation = [
-        { title: 'Home', route: '/home', loggedIn: null },
-        { title: 'Books', route: '/books', loggedIn: null }
+        { title: 'Home', route: '/home'},
+        { title: 'Books', route: '/books'}
     ];
+
+    secureNavigation = [
+        { title: 'Book List', route: '/book-list'},
+        { title: 'Profile', route: '/profile'}
+    ]
     
     created(){
         EventBus.$on('navmenuLoginStatus', () => {
             this.loginStatus();
         });
         this.loginStatus()
-        console.log(this.token)
     }
 
     

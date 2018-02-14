@@ -6,6 +6,7 @@ import Register from '@/components/Register/Register.vue'
 import Books from '@/components/Books/Books.vue'
 import Book from '@/components/Book/Book.vue'
 import BookList from '@/components/BookList/BookList.vue'
+import Profile from '@/components/Profile/Profile.vue'
 import AuthenticationService from '@/services/AuthenticationService'
 import { EventBus } from '../main'
 
@@ -59,6 +60,12 @@ export default new Router({
     path: '/book-list',
     name: 'BookList',
     component: BookList,
+    beforeEnter: requireAuth
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
     beforeEnter: requireAuth
   }
   ]

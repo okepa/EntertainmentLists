@@ -7,8 +7,8 @@
       <v-toolbar-items class="hidden-sm-and-down" v-for="nav in navigation" :key="nav.title">
         <v-btn flat :to="nav.route">{{ nav.title }}</v-btn>
       </v-toolbar-items>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat to="/book-list" v-if="token != null">Book List</v-btn>
+      <v-toolbar-items class="hidden-sm-and-down" v-for="nav in secureNavigation" :key="nav.title" v-if="token != null">
+        <v-btn flat :to="nav.route">{{ nav.title }}</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-layout wrap>
@@ -30,12 +30,14 @@
             </v-list-tile>
             <v-divider></v-divider>
           </div>
-          <v-list-tile to="/book-list" exact v-if="token != null">
+          <div v-for="nav in secureNavigation" :key="nav.title" v-if="token != null">
+          <v-list-tile :to="nav.route" exact>
             <v-list-tile-content>
-              <v-list-tile-title>Book List</v-list-tile-title>
+              <v-list-tile-title>{{nav.title}}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-divider></v-divider>
+          </div>
         </v-list>
       </v-navigation-drawer>
     </v-layout>
