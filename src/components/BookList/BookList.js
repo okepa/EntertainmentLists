@@ -18,11 +18,24 @@ export default class BookList extends Vue {
 
     getBookList(){
         HttpRequestsService.getRequest("book-list").then(result => {
-            console.log(result)
             this.readingBookList = result.data.readingStatus;
             this.readBookList = result.data.readStatus;
             this.planToReadBookList = result.data.planToReadStatus;
             this.abandonedBookList = result.data.abandonedStatus;     
+        }).catch(err => {
+            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+        })
+    }
+
+    
+    viewBook(id){
+        this.$router.push(`/book/${id}`);
+    }
+
+    deleteFromList(id){
+        HttpRequestsService.deleteRequest(`book-list?b=${id}`).then(result => {
+            this.getBookList();
+            EventBus.$emit('success', { type: "error", text: "Delete from your book list" });
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })

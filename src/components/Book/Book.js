@@ -13,7 +13,7 @@ export default class Book extends Vue {
     readingRating = [1, 2, 3, 4, 5];
     bookList = {
         usernameId: null,
-        bookId: this.bookId,
+        bookId: "",
         bookTitle: "",
         bookAuthor: [],
         bookPubisher: "",
@@ -25,7 +25,7 @@ export default class Book extends Vue {
     reviews = [];
     review = {
         usernameId: null,
-        bookId: this.bookId,
+        bookId: "",
         reviewTitle: "",
         reviewRating: "",
         reviewContent: ""
@@ -35,6 +35,8 @@ export default class Book extends Vue {
 
     created() {
         this.bookId = this.$route.params.bookid;
+        this.bookList.bookId = this.bookId;
+        this.review.bookId = this.bookId;
         this.getBook();
         this.getReviews();
         if(!!Vue.cookie.get('usernameId')){
@@ -48,7 +50,7 @@ export default class Book extends Vue {
         BooksHttpRequestsService.getBookRequest(`${this.bookId}`).then(result => {
             this.book = result.data.volumeInfo;
             this.bookList.usernameId = Vue.cookie.get('usernameId');
-            this.bookList.bookTitle = this.book.title;
+            this.bookList.bookTitle = this.book.title;  
             this.bookList.bookAuthor = this.book.authors;
             this.bookList.bookPubisher = this.book.publisher;
         }).catch(err => {

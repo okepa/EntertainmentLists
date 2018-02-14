@@ -32,7 +32,6 @@ export default class Books extends Vue {
 
         BooksHttpRequestsService.getBooksRequest(`${search}&startIndex=${this.startIndex}`).then(result => {
             this.books = result.data.items;
-            //console.log(this.books)
             HttpRequestsService.getRequest(`ratings`).then(result2 => {
                 for(var i = 0; i < this.books.length; i ++){
                     for(var j = 0; j < result2.data.bookData.length; j ++){
@@ -41,7 +40,6 @@ export default class Books extends Vue {
                         }
                     }
                 }
-                console.log(this.books);
                 this.finalBooks = this.books;
             });
         }).catch(err => {

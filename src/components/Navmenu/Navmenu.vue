@@ -30,7 +30,7 @@
             </v-list-tile>
             <v-divider></v-divider>
           </div>
-          <v-list-tile to="book-list" exact  v-if="token != null">
+          <v-list-tile to="/book-list" exact v-if="token != null">
             <v-list-tile-content>
               <v-list-tile-title>Book List</v-list-tile-title>
             </v-list-tile-content>
