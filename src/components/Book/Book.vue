@@ -55,7 +55,8 @@
                             </v-flex>
                             <v-card-text v-if="loggedIn">
                                 <v-flex xs12>
-                                    <v-select v-bind:items="readingStatus" v-model="bookList.bookStatus" label="Status" class="input-group--focused" item-value="status"></v-select>
+                                    <v-select v-bind:items="readingStatus" v-model="bookList.bookStatus" label="Status" class="input-group--focused" item-value="status"
+                                        required :error-messages="errors.collect('Status')" v-validate="'required'" data-vv-name="Status"></v-select>
                                 </v-flex>
                                 <v-flex xs12>
                                     <v-select v-bind:items="readingRating" v-model="bookList.bookRating" label="Rating" class="input-group--focused" item-value="rating"></v-select>

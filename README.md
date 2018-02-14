@@ -25,5 +25,21 @@
 
 ## Bugs
 
-> Rating will break if no rating is given
+> 
+
+## Tests
+
+- [x] Adding a book to booklist for the first time
+- [x] Adding a book to booklist without a rating for the first time
+
+- [x] Editing book from booklist
+- [X] Editing a book for booklist without a rating to a rating
+- [x] Editing a book for booklist with a rating to no rating
+
+- [x] Deleting a book from booklist - only added once
+- [x] Adding a book to booklist - after it has been deleted
+
+- [x] Adding a book to booklist from another account
+- [x] Deleting a book from booklist - added more than once
+
 
