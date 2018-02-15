@@ -1,29 +1,25 @@
 import Vue from 'vue'
 import { Component, Watch } from 'vue-property-decorator'
 import HttpRequestsService from '../../services/HttpRequestsService'
+import UserInformation from '../UserInformation/UserInformation.vue'
+import Reviews from '../Reviews/Reviews.vue'
 import { EventBus } from '../../main'
 
-@Component
+@Component({
+    components:{
+        UserInformationComponent: UserInformation,
+        ReviewsComponent: Reviews
+    }
+})
 export default class Profile extends Vue {
-    profile = {}
+    // options = [{title: "User Information", active: false}, {title: "Reviews", active: false}];
+    userInformation = {title: "User Information", active: false};
+    reviews = {title: "Reviews", active: false};
 
     created(){
-        this.getProfile();
+
     }
 
-    getProfile(){
-        HttpRequestsService.getRequest("profile").then(result => {
-            this.profile = result.data.user;
-        }).catch(err => {
-            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
-        });
-    }
 
-    updateProfile(){
-        HttpRequestsService.postRequest("profile", this.profile).then(result => {
-            EventBus.$emit('toast', { type: "success", text: result.data.message });
-        }).catch(err => {
-            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
-        });
-    }
+
 }

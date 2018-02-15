@@ -20,13 +20,14 @@
 - [x] Assign ratings for books
 - [x] Write reviews for books
 - [x] View reviews for books
+- [x] View your reviews
 - [ ] Delete reviews for books
 - [x] View your profile
 - [x] Update your profile
 
 ## Bugs
 
-> 
+> Reviews will carry on forever need to add pagination
 
 ## Tests
 

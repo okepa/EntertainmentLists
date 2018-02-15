@@ -4,12 +4,8 @@
             <v-layout row>
                 <v-flex xs6 offset-xs3 @keyup.enter="login">
                     <v-card>
-                        <v-card-title>
-                            <v-layout row>
-                                <v-flex>
-                                    <h1 class="indigo--text text--darken-4">Register</h1>
-                                </v-flex>
-                            </v-layout>
+                        <v-card-title primary-title class="headline mb-0">
+                            Register
                         </v-card-title>
                         <v-card-text>
                              <v-layout row>

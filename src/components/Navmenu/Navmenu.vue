@@ -13,7 +13,7 @@
     </v-toolbar>
     <v-layout wrap>
       <v-navigation-drawer temporary v-model="drawer" absolute>
-        <v-list class="pa-1 indigo darken-4" dark>
+        <v-list class="pa-1 primary" dark>
           <v-list-tile>
             <v-list-tile-content>
               <v-list-tile-title>FFFilter</v-list-tile-title>
