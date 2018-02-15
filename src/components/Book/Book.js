@@ -91,7 +91,7 @@ export default class Book extends Vue {
             if (result) {
                 HttpRequestsService.postRequest("review", this.review).then(result => {
                     this.reviewDialog = !this.reviewDialog;
-                    EventBus.$emit('toast', { type: "success", text: "Review Submitted" });
+                    EventBus.$emit('toast', { type: "success", text: result.data.message });
                     this.getReviews();
                 }).catch(err => {
                     EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
@@ -106,7 +106,7 @@ export default class Book extends Vue {
         this.$validator.validateAll({ "Status": this.bookList.bookStatus }).then((result) => {
             if (result) {
                 HttpRequestsService.postRequest("book-list", this.bookList).then(result => {
-                    EventBus.$emit('toast', { type: "success", text: "Added to your book list" });
+                    EventBus.$emit('toast', { type: "success", text: result.data.message });
                 }).catch(err => {
                     EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
                 });

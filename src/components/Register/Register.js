@@ -11,7 +11,7 @@ export default class Login extends Vue {
         this.$validator.validateAll().then((result) => {
             if (result) {
                 HttpRequestsService.postRequest("register", this.registration).then((response) => {
-                    EventBus.$emit('toast', { type: "success", text: "Registration successful" });
+                    EventBus.$emit('toast', { type: "success", text: response.data.message });
                     this.registration = { username: "", email: "", password: "", confirmPassword: "" }
                     this.$router.push("/login")
                 }).catch(err => {
