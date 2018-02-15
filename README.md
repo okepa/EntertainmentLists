@@ -27,7 +27,8 @@
 
 ## Bugs
 
-> Reviews will carry on forever need to add pagination
+> Reviews will carry on forever need to add pagination in both book and reviews
+> Can see register button on homepage
 
 ## Tests
 

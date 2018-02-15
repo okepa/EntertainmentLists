@@ -18,4 +18,13 @@ export default class Reviews extends Vue {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })
     }
+
+    deleteUserReview(id){
+        HttpRequestsService.deleteRequest(`user-reviews?b=${id}`).then(result => {
+            EventBus.$emit('toast', { type: "success", text: result.data.message });
+            this.getUserReviews();        
+        }).catch(err => {
+            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+        })
+    }
 }
