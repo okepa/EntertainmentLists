@@ -21,7 +21,7 @@
 - [x] Write reviews for books
 - [x] View reviews for books
 - [x] View your reviews
-- [ ] Delete reviews for books
+- [x] Delete reviews for books
 - [x] View your profile
 - [x] Update your profile
 
