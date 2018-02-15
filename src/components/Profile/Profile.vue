@@ -7,13 +7,13 @@
                         <v-list class="pt-0 pb-0">
                             <v-divider></v-divider>
                             <!-- <div v-for="option in options" :key="option.title"> -->
-                            <v-list-tile @click="userInformation.active=!userInformation.active; reviews.active=false">
+                            <v-list-tile @click="userInformation.active=true; reviews.active=false">
                                 <v-list-tile-content>
                                     <v-list-tile-title>{{userInformation.title}}</v-list-tile-title>
                                 </v-list-tile-content>
                             </v-list-tile>
                             <v-divider></v-divider>
-                            <v-list-tile @click="reviews.active=!reviews.active; userInformation.active=false">
+                            <v-list-tile @click="reviews.active=true; userInformation.active=false">
                                 <v-list-tile-content>
                                     <v-list-tile-title>{{reviews.title}}</v-list-tile-title>
                                 </v-list-tile-content>

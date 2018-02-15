@@ -8,7 +8,7 @@
                     </v-card-title>
                     <v-card-text>
                         <div v-for="review in reviews">
-                            <v-card>
+                            <v-card class="mb-1">
                                 <v-flex xs12 class="text-xs-right">
                                     <v-btn color="error" flat @click="deleteUserReview(review.bookId)">Delete</v-btn>
                                 </v-flex>
@@ -24,8 +24,9 @@
                                         {{review.reviewContent}}
                                     </v-flex>
                                 </v-card-text>
-                            </v-card>
+                            </v-card>                 
                         </div>
+                        <v-pagination :length="reviewCount" v-model="page" :total-visible="5"></v-pagination>
                     </v-card-text>
                 </v-flex>
             </v-layout>

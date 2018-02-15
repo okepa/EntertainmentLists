@@ -6,13 +6,22 @@ import { EventBus } from '../../main'
 @Component
 export default class Reviews extends Vue {
     reviews = [];
+    reviewCount = 0;
+    page = 1;
 
     created(){
         this.getUserReviews();
     }
 
+    @Watch('page')
+    onPageChange(val){
+        this.getUserReviews();
+    }
+
+
     getUserReviews(){
-        HttpRequestsService.getRequest("user-reviews").then(result => {
+        HttpRequestsService.getRequest(`user-reviews?p=${this.page}`).then(result => {
+            this.reviewCount = Math.ceil(result.data.reviewsTotal / 5);
             this.reviews = result.data.reviews;
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
