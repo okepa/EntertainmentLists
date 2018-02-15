@@ -39,11 +39,10 @@ export default class Book extends Vue {
         this.review.bookId = this.bookId;
         this.getBook();
         this.getReviews();
-        if (!!Vue.cookie.get('usernameId')) {
+        if (this.loggedIn) {
             this.getUserBookInfo();
             this.getUserReview();
         }
-        console.log(this.loggedIn)
     }
 
     getBook() {

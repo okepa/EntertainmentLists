@@ -2,8 +2,7 @@
     <div>
         <v-container align-content-center>
             <v-layout row>
-                <v-flex xs6 offset-xs3 @keyup.enter="updateProfile">
-                    <v-card>
+                <v-flex xs12>
                         <v-card-title primary-title class="headline mb-0">
                             User Information
                         </v-card-title>
@@ -24,7 +23,6 @@
                                 </v-flex>
                             </v-layout>
                         </v-card-text>
-                    </v-card>
                 </v-flex>
             </v-layout>
         </v-container>

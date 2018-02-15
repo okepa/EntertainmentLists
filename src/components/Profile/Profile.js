@@ -13,7 +13,7 @@ import { EventBus } from '../../main'
 })
 export default class Profile extends Vue {
     // options = [{title: "User Information", active: false}, {title: "Reviews", active: false}];
-    userInformation = {title: "User Information", active: false};
+    userInformation = {title: "User Information", active: true};
     reviews = {title: "Reviews", active: false};
 
     created(){
