@@ -5,13 +5,22 @@
                 <v-flex xs12>
                     <v-card-title primary-title class="headline mb-0">
                         Reviews
+                        <v-spacer></v-spacer>
+                        <div v-if="loggedIn">
+                            <v-btn flat color="primary" @click="reviewDialog = !reviewDialog">Review</v-btn>
+                        </div>
+                        <div v-else>
+                            <v-btn class="primary" to="/login" dark flat>Log In</v-btn>
+                        </div>
                     </v-card-title>
+
                     <v-card-text>
                         <div v-for="review in reviews">
                             <v-card class="mb-1">
-                                <v-flex xs12 class="text-xs-right">
+                                <v-flex xs12 class="text-xs-right" v-if="location == '/profile'">
                                     <v-btn color="error" flat @click="deleteUserReview(review.bookId)">Delete</v-btn>
                                 </v-flex>
+
                                 <v-flex xs12>
                                     <v-card-title primary-title class="title mb-0">
                                         {{review.reviewTitle}}
@@ -24,13 +33,42 @@
                                         {{review.reviewContent}}
                                     </v-flex>
                                 </v-card-text>
-                            </v-card>                 
+                            </v-card>
                         </div>
                         <v-pagination :length="reviewCount" v-model="page" :total-visible="5"></v-pagination>
                     </v-card-text>
                 </v-flex>
             </v-layout>
         </v-container>
+        <v-dialog v-model="reviewDialog" persistent max-width="50%">
+            <v-card>
+                <v-card-title class="headline mb-0">Review</v-card-title>
+                <v-card-text>
+                    <v-layout row>
+                        <v-flex xs6 pa-1>
+                            <v-text-field name="Title" label="Title" class="input-group--focused" v-model="review.reviewTitle" required :error-messages="errors.collect('Title')"
+                                v-validate="'required'" data-vv-name="Title"></v-text-field>
+                        </v-flex>
+                        <v-flex xs6 pa-1>
+                            <v-select name="Rating" v-bind:items="readingRating" v-model="review.reviewRating" label="Rating" class="input-group--focused"
+                                item-value="rating" required :error-messages="errors.collect('Rating')" v-validate="'required'"
+                                data-vv-name="Rating"></v-select>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout>
+                        <v-flex xs12 pa-1>
+                            <v-text-field multi-line name="Content" label="Content" class="input-group--focused" v-model="review.reviewContent" required
+                                :error-messages="errors.collect('Content')" v-validate="'required'" data-vv-name="Content"></v-text-field>
+                        </v-flex>
+                    </v-layout>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="error" flat @click.native="reviewDialog = !reviewDialog">Cancel</v-btn>
+                    <v-btn color="success" flat @click.native="postReview">Submit</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </div>
 </template>
 

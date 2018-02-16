@@ -3,9 +3,14 @@ import { Component, Watch } from 'vue-property-decorator'
 import BooksHttpRequestsService from '../../services/BooksHttpRequestsService'
 import HttpRequestsService from '../../services/HttpRequestsService'
 import AuthenticationService from '../../services/AuthenticationService'
+import Reviews from '../Reviews/Reviews.vue'
 import { EventBus } from '../../main'
 
-@Component
+@Component({
+    components: {
+        ReviewsComponent: Reviews
+    }
+})
 export default class Book extends Vue {
     bookId;
     book = new Object();
@@ -30,7 +35,6 @@ export default class Book extends Vue {
         reviewRating: "",
         reviewContent: ""
     };
-    reviewDialog = false;
     loggedIn = AuthenticationService.loggedIn();
 
     created() {
@@ -38,10 +42,8 @@ export default class Book extends Vue {
         this.bookList.bookId = this.bookId;
         this.review.bookId = this.bookId;
         this.getBook();
-        this.getReviews();
         if (this.loggedIn) {
             this.getUserBookInfo();
-            this.getUserReview();
         }
     }
 
@@ -65,40 +67,6 @@ export default class Book extends Vue {
             }
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
-        });
-    }
-
-    getReviews() {
-        HttpRequestsService.getRequest(`reviews?b=${this.bookId}`).then(result => {
-            this.reviews = result.data.reviews;
-        }).catch(err => {
-            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
-        });
-    }
-
-    getUserReview() {
-        HttpRequestsService.getRequest(`review?b=${this.bookId}`).then(result => {
-            if (result.data.review != null) {
-                this.review = result.data.review;
-            }
-        }).catch(err => {
-            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
-        })
-    }
-
-    postReview() {
-        this.$validator.validateAll({ "Title": this.review.reviewTitle, "Rating": this.review.reviewRating, "Content": this.review.reviewContent }).then((result) => {
-            if (result) {
-                HttpRequestsService.postRequest("review", this.review).then(result => {
-                    this.reviewDialog = !this.reviewDialog;
-                    EventBus.$emit('toast', { type: "success", text: result.data.message });
-                    this.getReviews();
-                }).catch(err => {
-                    EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
-                });
-            } else {
-                EventBus.$emit('toast', { type: "error", text: "Please fill in required fields" });
-            }
         });
     }
 

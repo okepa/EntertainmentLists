@@ -27,8 +27,6 @@
 
 ## Bugs
 
-> Reviews will carry on forever need to add pagination in both book and reviews
-
 ## Tests
 
 - [x] Adding a book to booklist for the first time
