@@ -6,12 +6,14 @@
                     <v-card-title primary-title class="headline mb-0">
                         Reviews
                         <v-spacer></v-spacer>
+                        <div v-if="location == '/book/:bookid'">
                         <div v-if="loggedIn">
                             <v-btn flat color="primary" @click="reviewDialog = !reviewDialog">Review</v-btn>
                         </div>
                         <div v-else>
                             <v-btn class="primary" to="/login" dark flat>Log In</v-btn>
                         </div>
+                    </div>
                     </v-card-title>
 
                     <v-card-text>
