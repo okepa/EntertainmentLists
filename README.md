@@ -12,9 +12,11 @@
 - [x] Search for books by title
 - [x] Search for books by author
 - [x] Search for books by publisher
-- [ ] Search for book by genre
+- [ ] Search for books by genre
 - [x] View an individual book
-- [x] Add book to your reading list
+- [x] Add book to your reading list - via book page
+- [x] Edit book on your reading list - via book page
+- [x] Edit book on your reading list - via book list page
 - [x] Delete book from your reading list
 - [x] View you reading list
 - [x] Assign ratings for books
@@ -24,8 +26,11 @@
 - [x] Delete reviews for books
 - [x] View your profile
 - [x] Update your profile
+- [x] Find similar books
 
 ## Bugs
+
+> Carousel images are too large
 
 ## Tests
 

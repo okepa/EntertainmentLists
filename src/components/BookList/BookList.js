@@ -5,7 +5,8 @@ import { EventBus } from '../../main'
 
 @Component
 export default class BookList extends Vue {
-    headers = [{text: "Title", value:"title", align: 'left'}, {text: "Author", value:"authors", align: 'left'}, {text: "Publisher", value:"publisher", align: 'left'}, {text: "Rating", value:"rating", align: 'left'} ]
+    headers = [{text: "Title", value:"title", align: 'left'}, {text: "Author", value:"authors", align: 'left'}, {text: "Publisher", value:"bookPublisher", align: 'left'}, {text: "Rating", value:"rating", align: 'left'} ]
+    readingRating = ["", 1, 2, 3, 4, 5];
     readingBookList = [];
     readBookList = [];
     planToReadBookList = [];
@@ -21,7 +22,7 @@ export default class BookList extends Vue {
             this.readingBookList = result.data.readingStatus;
             this.readBookList = result.data.readStatus;
             this.planToReadBookList = result.data.planToReadStatus;
-            this.abandonedBookList = result.data.abandonedStatus;     
+            this.abandonedBookList = result.data.abandonedStatus;
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })
@@ -35,7 +36,17 @@ export default class BookList extends Vue {
     deleteFromList(id){
         HttpRequestsService.deleteRequest(`book-list?b=${id}`).then(result => {
             this.getBookList();
-            EventBus.$emit('success', { type: "error", text: "Delete from your book list" });
+            EventBus.$emit('success', { type: "error", text: result.data.message });
+        }).catch(err => {
+            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+        })
+    }
+
+    changeRating(id){
+       //look for id in array
+        var obj = this.readingBookList.find(o => o.bookId = id);
+        HttpRequestsService.postRequest("book-list", obj).then(result => {
+            EventBus.$emit('success', { type: "error", text: result.data.message });
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })

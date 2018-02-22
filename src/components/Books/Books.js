@@ -28,7 +28,7 @@ export default class Books extends Vue {
         var search = null;
         if(this.title != null) search += `+intitle:${this.title}`;
         if(this.author != null) search += `+inauthor:${this.author}`;
-        if(this.publisher) search += `+inpublisher:${this.publisher}`;
+        if(this.publisher != null) search += `+inpublisher:${this.publisher}`;
 
         BooksHttpRequestsService.getBooksRequest(`${search}&startIndex=${this.startIndex}`).then(result => {
             this.books = result.data.items;

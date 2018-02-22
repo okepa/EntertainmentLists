@@ -1,20 +1,24 @@
 <template>
     <v-flex xs8 offset-xs2>
         <v-container>
-            <v-layout row>
-                <v-flex xs3 pr-3>
-                    <v-text-field name="title" label="Title" v-model="title" class="input-group--focused"></v-text-field>
-                </v-flex>
-                <v-flex xs3 pr-3>
-                    <v-text-field name="author" label="Author" v-model="author" class="input-group--focused"></v-text-field>
-                </v-flex>
-                <v-flex xs3 pr-3>
-                    <v-text-field name="publisher" label="Publisher" v-model="publisher" class="input-group--focused"></v-text-field>
-                </v-flex>
-                <v-flex xs3 pr-3>
-                    <v-btn @click="getBooks" class="primary">Search</v-btn>
-                </v-flex>
-            </v-layout>
+            <v-card>
+                <v-card-text>
+                    <v-layout row>
+                        <v-flex xs3 pr-3>
+                            <v-text-field name="title" label="Title" v-model="title" class="input-group--focused"></v-text-field>
+                        </v-flex>
+                        <v-flex xs3 pr-3>
+                            <v-text-field name="author" label="Author" v-model="author" class="input-group--focused"></v-text-field>
+                        </v-flex>
+                        <v-flex xs3 pr-3>
+                            <v-text-field name="publisher" label="Publisher" v-model="publisher" class="input-group--focused"></v-text-field>
+                        </v-flex>
+                        <v-flex xs3 pr-3>
+                            <v-btn @click="getBooks" class="primary">Search</v-btn>
+                        </v-flex>
+                    </v-layout>
+                </v-card-text>
+            </v-card>
             <!-- Displayed results in data table -->
             <v-layout row>
                 <v-flex>

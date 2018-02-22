@@ -21,7 +21,7 @@ export default class Book extends Vue {
         bookId: "",
         bookTitle: "",
         bookAuthor: [],
-        bookPubisher: "",
+        bookPublisher: "",
         bookStatus: "",
         bookRating: null,
         bookRatingCount: null,
@@ -36,26 +36,50 @@ export default class Book extends Vue {
         reviewContent: ""
     };
     loggedIn = AuthenticationService.loggedIn();
+    search = "";
+    startIndex = 0;
+    similarBooks = [];
 
     created() {
         this.bookId = this.$route.params.bookid;
         this.bookList.bookId = this.bookId;
         this.review.bookId = this.bookId;
-        this.getBook();
+        this.getBook().then(() => {
+            this.getSimilarBooks();
+        });
         if (this.loggedIn) {
+            this.getUserBookInfo();
+        }
+    }
+    @Watch('$route')
+    onRouteChange(val) {
+        this.bookId = this.$route.params.bookid;
+        this.bookList.bookId = this.bookId;
+        this.review.bookId = this.bookId;
+        this.getBook().then(() => {
+            this.similarBooks = [];
+            this.getSimilarBooks();
+        });
+        if (this.loggedIn) {
+            this.bookList.bookStatus = "";
+            this.bookList.bookRating = null;
             this.getUserBookInfo();
         }
     }
 
     getBook() {
-        BooksHttpRequestsService.getBookRequest(`${this.bookId}`).then(result => {
-            this.book = result.data.volumeInfo;
-            this.bookList.usernameId = Vue.cookie.get('usernameId');
-            this.bookList.bookTitle = this.book.title;
-            this.bookList.bookAuthor = this.book.authors;
-            this.bookList.bookPubisher = this.book.publisher;
-        }).catch(err => {
-            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+        return new Promise((resolve, reject) => {
+            BooksHttpRequestsService.getBookRequest(`${this.bookId}`).then(result => {
+                this.book = result.data.volumeInfo;
+                this.bookList.usernameId = Vue.cookie.get('usernameId');
+                this.bookList.bookTitle = this.book.title;
+                this.bookList.bookAuthor = this.book.authors;
+                this.bookList.bookPublisher = this.book.publisher;
+                resolve();
+            }).catch(err => {
+                EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+                reject();
+            });
         });
     }
 
@@ -83,6 +107,34 @@ export default class Book extends Vue {
                 EventBus.$emit('toast', { type: "error", text: "Please fill in required fields" });
             }
         });
+    }
+    /**
+     * Get similar books depending on category
+     */
+    getSimilarBooks() {
+        var first = true;
+        for (var i = 0; i < this.book.categories.length; i++) {
+            if (first) {
+                this.search += `subject:${this.book.categories[i]}`;
+            } else {
+                this.search += `+subject:${this.book.categories[i]}`;
+            }
+        }
+        BooksHttpRequestsService.getBooksRequest(`${this.search}`).then(total => {
+            var randomNumber = Math.floor((Math.random() * total.data.totalItems) + 0) - 10;
+            BooksHttpRequestsService.getBooksRequest(`${this.search}&startIndex=${randomNumber}`).then(result => {
+                this.similarBooks = result.data.items;
+            }).catch(err => {
+                EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+            });
+        }).catch(err => {
+            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+        });
+        
+    }
+
+    viewSimilarBook(id){
+        this.$router.push(`/book/${id}`);
     }
 
 }

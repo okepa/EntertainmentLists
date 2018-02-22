@@ -72,8 +72,23 @@
                             </v-card-text>
                         </v-card>
                     </v-flex>
+                    <!-- Similar books -->
+                    <v-flex d-flex xs9 class="text-xs-left" fill-height>
+                        <v-card>
+                            <v-flex xs12>
+                                <v-card-title primary-title class="title mb-0">
+                                    Similar Books
+                                </v-card-title>
+                            </v-flex>
+                            <v-flex xs12 justify-center class="pa-3">
+                                <v-carousel style="height:300px">
+                                    <v-carousel-item v-for="(item,i) in similarBooks" :src="item.volumeInfo.imageLinks.thumbnail" :key="i" style="height:300px" @click="viewSimilarBook(item.id)" class="click"></v-carousel-item>
+                                </v-carousel>
+                            </v-flex>
+                        </v-card>
+                    </v-flex>
                     <!-- Reviews -->
-                    <v-flex d-flex xs9 class="text-xs-left">
+                    <v-flex d-flex xs12 class="text-xs-left">
                         <v-card>
                             <reviews-component></reviews-component>
                         </v-card>

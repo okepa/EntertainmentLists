@@ -9,11 +9,16 @@
                         <template slot="items" slot-scope="props">
                             <tr>
                                 <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookTitle }}</td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left" v-for=" author in props.item.bookAuthor">
-                                    {{ author }}
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">
+                                    <div v-for="author in props.item.bookAuthor">
+                                        {{ author }}
+                                    </div>
                                 </td>
                                 <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookPublisher }}</td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookRating }}</td>
+                                <td>
+                                    <v-select @change="changeRating(props.item.bookId)" v-bind:items="readingRating" v-model="props.item.bookRating" label="Rating"
+                                        class="input-group--focused"></v-select>
+                                </td>
                                 <td>
                                     <v-btn color="error" flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
@@ -26,11 +31,16 @@
                         <template slot="items" slot-scope="props">
                             <tr>
                                 <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookTitle }}</td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left" v-for=" author in props.item.bookAuthor">
-                                    {{ author }}
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">
+                                    <div v-for="author in props.item.bookAuthor">
+                                        {{ author }}
+                                    </div>
                                 </td>
                                 <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookPublisher }}</td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookRating }}</td>
+                                <td>
+                                    <v-select @change="changeRating(props.item.bookId)" v-bind:items="readingRating" v-model="props.item.bookRating" label="Rating"
+                                        class="input-group--focused"></v-select>
+                                </td>
                                 <td>
                                     <v-btn color="error" flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
@@ -43,11 +53,16 @@
                         <template slot="items" slot-scope="props">
                             <tr>
                                 <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookTitle }}</td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left" v-for=" author in props.item.bookAuthor">
-                                    {{ author }}
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">
+                                    <div v-for=" author in props.item.bookAuthor">
+                                        {{ author }}
+                                    </div>
                                 </td>
                                 <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookPublisher }}</td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookRating }}</td>
+                                <td>
+                                    <v-select @change="changeRating(props.item.bookId)" v-bind:items="readingRating" v-model="props.item.bookRating" label="Rating"
+                                        class="input-group--focused"></v-select>
+                                </td>
                                 <td>
                                     <v-btn color="error" flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
@@ -60,11 +75,16 @@
                         <template slot="items" slot-scope="props">
                             <tr>
                                 <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookTitle }}</td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left" v-for=" author in props.item.bookAuthor">
-                                    {{ author }}
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">
+                                    <div v-for=" author in props.item.bookAuthor">
+                                        {{ author }}
+                                    </div>
                                 </td>
                                 <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookPublisher }}</td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookRating }}</td>
+                                <td>
+                                    <v-select @change="changeRating(props.item.bookId)" v-bind:items="readingRating" v-model="props.item.bookRating" label="Rating"
+                                        class="input-group--focused"></v-select>
+                                </td>
                                 <td>
                                     <v-btn color="error" flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
