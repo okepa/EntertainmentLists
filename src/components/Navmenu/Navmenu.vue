@@ -16,7 +16,7 @@
         <v-list class="pa-1 primary" dark>
           <v-list-tile>
             <v-list-tile-content>
-              <v-list-tile-title>FFFilter</v-list-tile-title>
+              <v-list-tile-title>Entertainment List</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>

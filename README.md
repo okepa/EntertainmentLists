@@ -44,5 +44,3 @@
 
 - [x] Adding a book to booklist from another account
 - [x] Deleting a book from booklist - added more than once
-
-
