@@ -27,23 +27,27 @@ export default class Book extends Vue {
         bookRatingCount: null,
         bookRatingTotal: null
     }
-    reviews = [];
+    loggedIn = AuthenticationService.loggedIn();
+    search = "";
+    startIndex = 0;
+    similarBooks = [];
     review = {
         usernameId: null,
         bookId: "",
         reviewTitle: "",
         reviewRating: "",
-        reviewContent: ""
+        reviewContent: "",
+        bookTitle: "",
+        bookAuthor: [],
+        bookPublisher: "",
+        bookRating: null,
+        bookRatingCount: null,
+        bookRatingTotal: null
     };
-    loggedIn = AuthenticationService.loggedIn();
-    search = "";
-    startIndex = 0;
-    similarBooks = [];
 
     created() {
         this.bookId = this.$route.params.bookid;
-        this.bookList.bookId = this.bookId;
-        this.review.bookId = this.bookId;
+        this.bookList.bookId = this.review.bookId = this.bookId;
         this.getBook().then(() => {
             this.getSimilarBooks();
         });
@@ -54,8 +58,7 @@ export default class Book extends Vue {
     @Watch('$route')
     onRouteChange(val) {
         this.bookId = this.$route.params.bookid;
-        this.bookList.bookId = this.bookId;
-        this.review.bookId = this.bookId;
+        this.bookList.bookId = this.review.bookId = this.bookId;
         this.getBook().then(() => {
             this.similarBooks = [];
             this.getSimilarBooks();
@@ -72,9 +75,9 @@ export default class Book extends Vue {
             BooksHttpRequestsService.getBookRequest(`${this.bookId}`).then(result => {
                 this.book = result.data.volumeInfo;
                 this.bookList.usernameId = Vue.cookie.get('usernameId');
-                this.bookList.bookTitle = this.book.title;
-                this.bookList.bookAuthor = this.book.authors;
-                this.bookList.bookPublisher = this.book.publisher;
+                this.bookList.bookTitle = this.review.bookTitle = this.book.title;
+                this.bookList.bookAuthor = this.review.bookAuthor = this.book.authors;
+                this.bookList.bookPublisher = this.review.bookPublisher = this.book.publisher;
                 resolve();
             }).catch(err => {
                 EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
@@ -121,7 +124,10 @@ export default class Book extends Vue {
             }
         }
         BooksHttpRequestsService.getBooksRequest(`${this.search}`).then(total => {
-            var randomNumber = Math.floor((Math.random() * total.data.totalItems) + 0) - 10;
+            var randomNumber = 0;
+            if(total <= 10){
+                randomNumber = Math.floor((Math.random() * total.data.totalItems) + 0) - 10;
+            }
             BooksHttpRequestsService.getBooksRequest(`${this.search}&startIndex=${randomNumber}`).then(result => {
                 this.similarBooks = result.data.items;
             }).catch(err => {

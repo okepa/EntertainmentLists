@@ -15,14 +15,12 @@
                         </div>
                     </div>
                     </v-card-title>
-
                     <v-card-text>
                         <div v-for="review in reviews">
                             <v-card class="mb-1">
                                 <v-flex xs12 class="text-xs-right" v-if="location == '/profile'">
                                     <v-btn color="error" flat @click="deleteUserReview(review.bookId)">Delete</v-btn>
                                 </v-flex>
-
                                 <v-flex xs12>
                                     <v-card-title primary-title class="title mb-0">
                                         {{review.reviewTitle}}

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Component, Watch } from 'vue-property-decorator'
+import { Component, Watch, Prop } from 'vue-property-decorator'
 import HttpRequestsService from '../../services/HttpRequestsService'
 import AuthenticationService from '../../services/AuthenticationService'
 
@@ -10,21 +10,19 @@ export default class Reviews extends Vue {
     bookId;
     location = "";
     reviews = [];
-    review = {};
     reviewCount = 0;
     page = 1;
     reviewDialog = false;
     readingRating = ["", 1, 2, 3, 4, 5];
     loggedIn = AuthenticationService.loggedIn();
 
-    created(){
+    created() {
         this.bookId = this.$route.params.bookid;
-        this.review.bookId = this.bookId;
-        if(this.$route.path == "/profile"){
+        if (this.$route.path == "/profile") {
             this.location = this.$route.path;
             this.getUserReviews();
         }
-        else if(this.$route.matched[0].path == "/book/:bookid"){
+        else if (this.$route.matched[0].path == "/book/:bookid") {
             this.location = this.$route.matched[0].path;
             this.getBookReviews();
             if (this.loggedIn) {
@@ -33,13 +31,24 @@ export default class Reviews extends Vue {
         }
     }
 
+    @Prop()
+    review;
+
     @Watch('page')
-    onPageChange(val){
+    onPageChange(val) {
         this.getUserReviews();
     }
 
+    @Watch('$route')
+    onRouteChange(val) {
+        this.bookId = this.$route.params.bookid;
+        this.getBookReviews();
+        if (this.loggedIn) {
+            this.getUserReview();
+        }
+    }
 
-    getUserReviews(){
+    getUserReviews() {
         HttpRequestsService.getRequest(`user-reviews?p=${this.page}`).then(result => {
             this.reviewCount = Math.ceil(result.data.reviewsTotal / 5);
             this.reviews = result.data.reviews;
@@ -83,10 +92,10 @@ export default class Reviews extends Vue {
         });
     }
 
-    deleteUserReview(id){
+    deleteUserReview(id) {
         HttpRequestsService.deleteRequest(`user-reviews?b=${id}`).then(result => {
             EventBus.$emit('toast', { type: "success", text: result.data.message });
-            this.getUserReviews();        
+            this.getUserReviews();
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })
