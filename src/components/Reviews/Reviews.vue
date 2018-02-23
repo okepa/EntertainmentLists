@@ -18,8 +18,12 @@
                     <v-card-text>
                         <div v-for="review in reviews">
                             <v-card class="mb-1">
-                                <v-flex xs12 class="text-xs-right" v-if="location == '/profile'">
+                                <v-flex xs12 v-if="location == '/profile/reviews'">
+                                    <v-card-title primary-title class="headline mb-0 pb-0 pt-0">
+                                    {{review.bookTitle}}
+                                    <v-spacer></v-spacer>
                                     <v-btn color="error" flat @click="deleteUserReview(review.bookId)">Delete</v-btn>
+                                    </v-card-title>
                                 </v-flex>
                                 <v-flex xs12>
                                     <v-card-title primary-title class="title mb-0">

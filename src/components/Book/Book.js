@@ -119,6 +119,7 @@ export default class Book extends Vue {
         for (var i = 0; i < this.book.categories.length; i++) {
             if (first) {
                 this.search += `subject:${this.book.categories[i]}`;
+                first = false;
             } else {
                 this.search += `+subject:${this.book.categories[i]}`;
             }

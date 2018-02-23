@@ -18,13 +18,13 @@ export default class Reviews extends Vue {
     review = {};
 
     created() {
-        this.review = this.reviewInfo;
         this.bookId = this.$route.params.bookid;
-        if (this.$route.path == "/profile") {
+        if (this.$route.path == "/profile/reviews") {
             this.location = this.$route.path;
             this.getUserReviews();
         }
         else if (this.$route.matched[0].path == "/book/:bookid") {
+            this.review = this.reviewInfo;
             this.location = this.$route.matched[0].path;
             this.getBookReviews();
             if (this.loggedIn) {
@@ -54,6 +54,7 @@ export default class Reviews extends Vue {
         HttpRequestsService.getRequest(`user-reviews?p=${this.page}`).then(result => {
             this.reviewCount = Math.ceil(result.data.reviewsTotal / 5);
             this.reviews = result.data.reviews;
+            console.log(this.reviews);
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })

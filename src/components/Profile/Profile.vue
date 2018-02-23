@@ -6,33 +6,24 @@
                     <v-card>
                         <v-list class="pt-0 pb-0">
                             <v-divider></v-divider>
-                            <!-- <div v-for="option in options" :key="option.title"> -->
-                            <v-list-tile @click="userInformation.active=true; reviews.active=false">
+                            <v-list-tile @click="userInformation.active=true; reviews.active=false" :to="userInformation.route">
                                 <v-list-tile-content>
-                                    <v-list-tile-title>{{userInformation.title}}</v-list-tile-title>
+                                    <v-list-tile-title >{{userInformation.title}}</v-list-tile-title>
                                 </v-list-tile-content>
                             </v-list-tile>
                             <v-divider></v-divider>
-                            <v-list-tile @click="reviews.active=true; userInformation.active=false">
+                            <v-list-tile @click="reviews.active=true; userInformation.active=false" :to="reviews.route">
                                 <v-list-tile-content>
-                                    <v-list-tile-title>{{reviews.title}}</v-list-tile-title>
+                                    <v-list-tile-title >{{reviews.title}}</v-list-tile-title>
                                 </v-list-tile-content>
                             </v-list-tile>
                             <v-divider></v-divider>
-                            <!-- </div> -->
                         </v-list>
                     </v-card>
                 </v-flex>
                 <v-flex d-flex xs9>
                     <v-card>
-                        <!-- <div v-for="option in options"> -->
-                            <div v-if="userInformation.active">
-                                <user-information-component></user-information-component>
-                            </div>
-                            <div v-if="reviews.active">
-                                <reviews-component></reviews-component>
-                            </div>
-                        <!-- </div> -->
+                            <router-view></router-view>
                     </v-card>
                 </v-flex>
             </v-layout>

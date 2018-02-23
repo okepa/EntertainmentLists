@@ -68,13 +68,20 @@ export default new Router({
     path: '/profile',
     name: 'Profile',
     component: Profile,
-    beforeEnter: requireAuth
-  },
-  {
-    path: '/user-information',
-    name: 'UserInformation',
-    component: UserInformation,
-    beforeEnter: requireAuth
+    beforeEnter: requireAuth,
+    children: [{
+      path: 'user-information',
+      name: 'UserInformation',
+      component: UserInformation,
+      beforeEnter: requireAuth
+    },
+    {
+      path: 'reviews',
+      name: 'Reviews',
+      component: Reviews,
+      beforeEnter: requireAuth
+    },
+    ]
   },
   {
     path: '/reviews',
@@ -97,7 +104,7 @@ function requireAuth(to, from, next) {
   }
 }
 
-function checkLoginStatus(to, from, next){
+function checkLoginStatus(to, from, next) {
   EventBus.$emit('loginStatus');
   EventBus.$emit('navmenuLoginStatus')
   next()

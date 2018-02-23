@@ -32,8 +32,6 @@
 
 > Carousel images are too large
 
-> In review page can see reviews but don't know to what book
-
 ## Tests
 
 - [x] Adding a book to booklist for the first time
