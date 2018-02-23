@@ -1,6 +1,6 @@
 <template>
     <v-flex xs8 offset-xs2>
-        <v-container>
+        <v-container fluid grid-list-md>
             <v-card>
                 <v-card-text>
                     <v-layout row>
