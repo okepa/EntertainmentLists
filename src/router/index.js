@@ -82,13 +82,7 @@ export default new Router({
       beforeEnter: requireAuth
     },
     ]
-  },
-  {
-    path: '/reviews',
-    name: 'Reviews',
-    component: Reviews,
-    beforeEnter: requireAuth
-  },
+  }
   ]
 })
 

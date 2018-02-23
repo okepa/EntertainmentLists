@@ -13,7 +13,7 @@ import { EventBus } from '../../main'
 })
 export default class Book extends Vue {
     bookId;
-    book = new Object();
+    book = {};
     readingStatus = ["Reading", "Read", "Plan To Read", "Abandoned"];
     readingRating = ["", 1, 2, 3, 4, 5];
     bookList = {
@@ -78,6 +78,7 @@ export default class Book extends Vue {
                 this.bookList.bookTitle = this.reviewInfo.bookTitle = this.book.title;
                 this.bookList.bookAuthor = this.reviewInfo.bookAuthor = this.book.authors;
                 this.bookList.bookPublisher = this.reviewInfo.bookPublisher = this.book.publisher;
+                console.log(this.book)
                 resolve();
             }).catch(err => {
                 EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });

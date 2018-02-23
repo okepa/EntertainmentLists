@@ -30,8 +30,6 @@
 
 ## Bugs
 
-> Carousel images are too large
-
 ## Tests
 
 - [x] Adding a book to booklist for the first time
