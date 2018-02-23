@@ -33,7 +33,6 @@
 > Carousel images are too large
 
 > In review page can see reviews but don't know to what book
-> Need to refactor the reviews so the book is added to the book table
 
 ## Tests
 

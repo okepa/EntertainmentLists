@@ -90,7 +90,7 @@
                     <!-- Reviews -->
                     <v-flex d-flex xs12 class="text-xs-left">
                         <v-card>
-                            <reviews-component :review="review"></reviews-component>
+                            <reviews-component :reviewInfo="reviewInfo"></reviews-component>
                         </v-card>
                     </v-flex>
                 </v-layout>

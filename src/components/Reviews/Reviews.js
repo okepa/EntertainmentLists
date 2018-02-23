@@ -15,8 +15,10 @@ export default class Reviews extends Vue {
     reviewDialog = false;
     readingRating = ["", 1, 2, 3, 4, 5];
     loggedIn = AuthenticationService.loggedIn();
+    review = {};
 
     created() {
+        this.review = this.reviewInfo;
         this.bookId = this.$route.params.bookid;
         if (this.$route.path == "/profile") {
             this.location = this.$route.path;
@@ -32,7 +34,7 @@ export default class Reviews extends Vue {
     }
 
     @Prop()
-    review;
+    reviewInfo;
 
     @Watch('page')
     onPageChange(val) {

@@ -31,7 +31,7 @@ export default class Book extends Vue {
     search = "";
     startIndex = 0;
     similarBooks = [];
-    review = {
+    reviewInfo = {
         usernameId: null,
         bookId: "",
         reviewTitle: "",
@@ -47,7 +47,7 @@ export default class Book extends Vue {
 
     created() {
         this.bookId = this.$route.params.bookid;
-        this.bookList.bookId = this.review.bookId = this.bookId;
+        this.bookList.bookId = this.reviewInfo.bookId = this.bookId;
         this.getBook().then(() => {
             this.getSimilarBooks();
         });
@@ -58,7 +58,7 @@ export default class Book extends Vue {
     @Watch('$route')
     onRouteChange(val) {
         this.bookId = this.$route.params.bookid;
-        this.bookList.bookId = this.review.bookId = this.bookId;
+        this.bookList.bookId = this.reviewInfo.bookId = this.bookId;
         this.getBook().then(() => {
             this.similarBooks = [];
             this.getSimilarBooks();
@@ -75,9 +75,9 @@ export default class Book extends Vue {
             BooksHttpRequestsService.getBookRequest(`${this.bookId}`).then(result => {
                 this.book = result.data.volumeInfo;
                 this.bookList.usernameId = Vue.cookie.get('usernameId');
-                this.bookList.bookTitle = this.review.bookTitle = this.book.title;
-                this.bookList.bookAuthor = this.review.bookAuthor = this.book.authors;
-                this.bookList.bookPublisher = this.review.bookPublisher = this.book.publisher;
+                this.bookList.bookTitle = this.reviewInfo.bookTitle = this.book.title;
+                this.bookList.bookAuthor = this.reviewInfo.bookAuthor = this.book.authors;
+                this.bookList.bookPublisher = this.reviewInfo.bookPublisher = this.book.publisher;
                 resolve();
             }).catch(err => {
                 EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
