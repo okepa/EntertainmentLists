@@ -19,6 +19,7 @@
     <navmenu/>
     <loginstatus/>
     <router-view/>
+    <footerall/>
   </v-app>
 </template>
 

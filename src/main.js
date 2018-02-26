@@ -8,6 +8,7 @@ import VueCookie from 'vue-cookie'
 import VeeValidate from 'vee-validate';
 import 'vuetify/dist/vuetify.min.css'
 import Navmenu from './components/Navmenu/Navmenu.vue'
+import Footer from './components/Footer/Footer.vue'
 import LoginStatus from './components/Login/LoginStatus.vue'
 
 export const EventBus = new Vue();
@@ -22,6 +23,7 @@ Vue.use(VueCookie)
 
 Vue.component('navmenu', Navmenu)
 Vue.component('loginstatus', LoginStatus)
+Vue.component('footerall', Footer)
 
 Vue.config.productionTip = false
 

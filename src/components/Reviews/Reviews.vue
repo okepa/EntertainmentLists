@@ -39,7 +39,7 @@
                                 </v-card-text>
                             </v-card>
                         </div>
-                        <v-pagination :length="reviewCount" v-model="page" :total-visible="5"></v-pagination>
+                        <v-pagination v-if="reviews > 0" :length="reviewCount" v-model="page" :total-visible="5"></v-pagination>
                     </v-card-text>
                 </v-flex>
             </v-layout>

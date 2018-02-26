@@ -21,7 +21,7 @@
             </v-card>
             <!-- Displayed results in data table -->
             <v-layout row>
-                <v-flex>
+                <v-flex class="text-xs-center">
                     <v-data-table v-bind:headers="headers" :items="finalBooks" hide-actions class="elevation-1">
                         <template slot="items" slot-scope="props">
                             <tr @click="viewBook(props.item.id)">
@@ -33,7 +33,7 @@
                             </tr>
                         </template>
                     </v-data-table>
-                    <v-pagination v-bind:length.number="15" v-model="page"></v-pagination>
+                    <v-pagination v-if="finalBooks.length > 0" :length="pages" v-model="page" ></v-pagination>
                 </v-flex>
             </v-layout>
         </v-container>

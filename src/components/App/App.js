@@ -35,7 +35,6 @@ export default class App extends Vue {
                 this.snackbarWarning = true;
                 break;
         }
-
         this.text = message.text;
     }
 
