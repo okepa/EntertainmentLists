@@ -51,4 +51,13 @@ export default class Books extends Vue {
         this.$router.push(`/book/${id}`);
     }
 
+    bookRatingDisplay(rating){
+        if(rating == 0){
+            return "";
+        }else{
+            return rating;
+        }
+
+    }
+
 }

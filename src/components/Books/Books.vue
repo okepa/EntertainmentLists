@@ -29,7 +29,7 @@
                                 <td class="text-xs-left">{{ props.item.volumeInfo.authors[0] }}</td>
                                 <td class="text-xs-left">{{ props.item.volumeInfo.publisher }}</td>
                                 <td class="text-xs-left">{{ props.item.volumeInfo.description }}</td>
-                                <td class="text-xs-left">{{ props.item.bookRating }}</td>
+                                <td class="text-xs-left">{{ bookRatingDisplay(props.item.bookRating) }}</td>
                             </tr>
                         </template>
                     </v-data-table>
