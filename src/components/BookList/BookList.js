@@ -11,13 +11,28 @@ export default class BookList extends Vue {
     readBookList = [];
     planToReadBookList = [];
     abandonedBookList = [];
+    readOnly = false;
 
 
     created() {
-       this.getBookList()
+        if(this.$route.params.id == null){
+            this.getBookList();
+        } else {
+            this.getUserBookList();
+        }
+    }
+
+    @Watch('$route.params.id')
+    onRouteChange(val){
+        if(this.$route.params.id == null){
+            this.getBookList();
+        } else {
+            this.getUserBookList();
+        }
     }
 
     getBookList(){
+        this.readOnly = false;
         HttpRequestsService.getRequest("book-list").then(result => {
             this.readingBookList = result.data.readingStatus;
             this.readBookList = result.data.readStatus;
@@ -47,6 +62,18 @@ export default class BookList extends Vue {
         var obj = this.readingBookList.find(o => o.bookId = id);
         HttpRequestsService.postRequest("book-list", obj).then(result => {
             EventBus.$emit('success', { type: "error", text: result.data.message });
+        }).catch(err => {
+            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+        })
+    }
+
+    getUserBookList(){
+        HttpRequestsService.getRequest(`other-user?username=${this.$route.params.id}`).then(result => {
+            this.readOnly = true;
+            this.readingBookList = result.data.readingStatus;
+            this.readBookList = result.data.readStatus;
+            this.planToReadBookList = result.data.planToReadStatus;
+            this.abandonedBookList = result.data.abandonedStatus;
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })

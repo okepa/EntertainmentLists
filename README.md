@@ -27,8 +27,12 @@
 - [x] View your profile
 - [x] Update your profile
 - [x] Find similar books
+- [ ] View other users book list
 
 ## Bugs
+
+> Similar book not quite working correctly
+> Pagination not showing up
 
 ## Tests
 

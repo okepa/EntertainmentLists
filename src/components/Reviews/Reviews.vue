@@ -7,26 +7,32 @@
                         Reviews
                         <v-spacer></v-spacer>
                         <div v-if="location == '/book/:bookid'">
-                        <div v-if="loggedIn">
-                            <v-btn flat color="primary" @click="reviewDialog = !reviewDialog">Review</v-btn>
+                            <div v-if="loggedIn">
+                                <v-btn flat color="primary" @click="reviewDialog = !reviewDialog">Review</v-btn>
+                            </div>
+                            <div v-else>
+                                <v-btn class="primary" to="/login" dark flat>Log In</v-btn>
+                            </div>
                         </div>
-                        <div v-else>
-                            <v-btn class="primary" to="/login" dark flat>Log In</v-btn>
-                        </div>
-                    </div>
                     </v-card-title>
                     <v-card-text>
                         <div v-for="review in reviews">
                             <v-card class="mb-1">
                                 <v-flex xs12 v-if="location == '/profile/reviews'">
                                     <v-card-title primary-title class="headline mb-0 pb-0 pt-0">
-                                    {{review.bookTitle}}
-                                    <v-spacer></v-spacer>
-                                    <v-btn color="error" flat @click="deleteUserReview(review.bookId)">Delete</v-btn>
+                                        {{review.bookTitle}}
+                                        <v-spacer></v-spacer>
+                                        <v-btn color="error" flat @click="deleteUserReview(review.bookId)">Delete</v-btn>
+                                    </v-card-title>
+                                </v-flex>
+                                <v-flex xs12 v-if="location == '/book/:bookid'">
+                                    <v-card-title class="subheading">
+                                        <v-spacer></v-spacer>
+                                        <a @click="userBookList(review.usernameId._id)">{{review.usernameId.username}}</a>
                                     </v-card-title>
                                 </v-flex>
                                 <v-flex xs12>
-                                    <v-card-title primary-title class="title mb-0">
+                                    <v-card-title class="title">
                                         {{review.reviewTitle}}
                                         <v-spacer></v-spacer>
                                         {{review.reviewRating}}

@@ -49,7 +49,7 @@ export default class Reviews extends Vue {
             this.getUserReview();
         }
     }
-
+    //Get all user reviews
     getUserReviews() {
         HttpRequestsService.getRequest(`user-reviews?p=${this.page}`).then(result => {
             this.reviewCount = Math.ceil(result.data.reviewsTotal / 5);
@@ -59,16 +59,17 @@ export default class Reviews extends Vue {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })
     }
-
+    //Get all review for one book
     getBookReviews() {
         HttpRequestsService.getRequest(`reviews?b=${this.bookId}&p=${this.page}`).then(result => {
             this.reviewCount = Math.ceil(result.data.reviewsTotal / 5);
             this.reviews = result.data.reviews;
+            console.log(this.reviews)
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         });
     }
-
+    //Get user review for one book
     getUserReview() {
         HttpRequestsService.getRequest(`review?b=${this.bookId}`).then(result => {
             if (result.data.review != null) {
@@ -102,5 +103,9 @@ export default class Reviews extends Vue {
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })
+    }
+
+    userBookList(usernameId){
+        this.$router.push(`/book-list/${usernameId}`);
     }
 }

@@ -60,6 +60,12 @@ export default new Router({
   },
   {
     path: '/book-list',
+    name: 'UserBookList',
+    component: BookList,
+    beforeEnter: requireAuth
+  },
+  {
+    path: '/book-list/:id',
     name: 'BookList',
     component: BookList,
     beforeEnter: requireAuth
