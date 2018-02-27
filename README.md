@@ -4,15 +4,15 @@
 
 ## Features
 
-- [ ] View all books
-- [ ] Sort books by title
-- [ ] Sort books by author
-- [ ] Sort books by publisher
-- [ ] Sort books by rating
+- [ ] View all books - Not possible with limitation of google api
+- [ ] Sort books by title - Not possible with limitation of google api
+- [ ] Sort books by author - Not possible with limitation of google api
+- [ ] Sort books by publisher - Not possible with limitation of google api
+- [ ] Sort books by rating - Not possible with limitation of google api
 - [x] Search for books by title
 - [x] Search for books by author
 - [x] Search for books by publisher
-- [ ] Search for books by genre
+- [ ] Search for books by genre/category
 - [x] View an individual book
 - [x] Add book to your reading list - via book page
 - [x] Edit book on your reading list - via book page
@@ -27,24 +27,12 @@
 - [x] View your profile
 - [x] Update your profile
 - [x] Find similar books
-- [ ] View other users book list
+- [x] View other users book list
 
 ## Bugs
 
-> Similar book not quite working correctly
-> Pagination not showing up
+> Similar book first image not showing up - vuetify bug
+> Pagination for book not working correctly - can't use total items for pagination
+> Need to upgrade to vuetify 1
+> Change book page so that the word null is not searched for
 
-## Tests
-
-- [x] Adding a book to booklist for the first time
-- [x] Adding a book to booklist without a rating for the first time
-
-- [x] Editing book from booklist
-- [X] Editing a book for booklist without a rating to a rating
-- [x] Editing a book for booklist with a rating to no rating
-
-- [x] Deleting a book from booklist - only added once
-- [x] Adding a book to booklist - after it has been deleted
-
-- [x] Adding a book to booklist from another account
-- [x] Deleting a book from booklist - added more than once

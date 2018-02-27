@@ -78,7 +78,6 @@ export default class Book extends Vue {
                 this.bookList.bookTitle = this.reviewInfo.bookTitle = this.book.title;
                 this.bookList.bookAuthor = this.reviewInfo.bookAuthor = this.book.authors;
                 this.bookList.bookPublisher = this.reviewInfo.bookPublisher = this.book.publisher;
-                console.log(this.book)
                 resolve();
             }).catch(err => {
                 EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
@@ -116,32 +115,27 @@ export default class Book extends Vue {
      * Get similar books depending on category
      */
     getSimilarBooks() {
-        var first = true;
-        for (var i = 0; i < this.book.categories.length; i++) {
-            if (first) {
-                this.search += `subject:${this.book.categories[i]}`;
-                first = false;
-            } else {
-                this.search += `+subject:${this.book.categories[i]}`;
-            }
-        }
+        this.search += `subject:${this.book.categories[0]}`;
         BooksHttpRequestsService.getBooksRequest(`${this.search}`).then(total => {
             var randomNumber = 0;
-            if(total <= 10){
+            if (total.data.totalItems >= 10) {
                 randomNumber = Math.floor((Math.random() * total.data.totalItems) + 0) - 10;
             }
             BooksHttpRequestsService.getBooksRequest(`${this.search}&startIndex=${randomNumber}`).then(result => {
                 this.similarBooks = result.data.items;
+                console.log(this.similarBooks)
+                for(var i = 0; i < 10; i++)
+                console.log(this.similarBooks[i].volumeInfo.imageLinks)
             }).catch(err => {
                 EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
             });
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         });
-        
+
     }
 
-    viewSimilarBook(id){
+    viewSimilarBook(id) {
         this.$router.push(`/book/${id}`);
     }
 

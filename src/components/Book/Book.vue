@@ -7,8 +7,7 @@
                     <v-flex d-flex xs3 class="text-xs-left">
                         <v-card>
                             <v-flex xs12>
-                                <!-- <v-card-media :src="book.imageLinks.thumbnail"></v-card-media> -->
-                                <img :src="book.imageLinks.thumbnail">
+                                <v-card-media v-if="book.imageLinks != null" :src="book.imageLinks.thumbnail" height="225"></v-card-media>
                             </v-flex>
                             <v-card-text>
                                 <v-flex xs12>
@@ -82,7 +81,7 @@
                             </v-flex>
                             <v-flex xs12 justify-center class="pa-3 text-xs-center align-center mx-auto" >
                                 <v-carousel style="height:400px; width:275px; margin:auto;" class="text-xs-center mx-auto align-center" >
-                                    <v-carousel-item v-for="(item,i) in similarBooks" :src="item.volumeInfo.imageLinks.thumbnail" :key="i" style="background-size: 275px" @click="viewSimilarBook(item.id)" class="click"></v-carousel-item>
+                                    <v-carousel-item v-if="item.volumeInfo.imageLinks != null" v-for="(item,i) in similarBooks" :src="item.volumeInfo.imageLinks.thumbnail" :key="i" style="background-size: 275px" @click="viewSimilarBook(item.id)" class="click"></v-carousel-item>
                                 </v-carousel>
                             </v-flex>
                         </v-card>

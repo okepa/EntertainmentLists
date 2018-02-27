@@ -18,7 +18,7 @@
     "vue-cookie": "^1.1.4",
     "vue-property-decorator": "^6.0.0",
     "vue-router": "^3.0.1",
-    "vuetify": "^0.17.6"
+    "vuetify": "^1.0.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",

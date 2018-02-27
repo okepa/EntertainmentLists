@@ -54,7 +54,7 @@ export default class Reviews extends Vue {
         HttpRequestsService.getRequest(`user-reviews?p=${this.page}`).then(result => {
             this.reviewCount = Math.ceil(result.data.reviewsTotal / 5);
             this.reviews = result.data.reviews;
-            console.log(this.reviews);
+            console.log(this.reviewCount);
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })
@@ -64,7 +64,7 @@ export default class Reviews extends Vue {
         HttpRequestsService.getRequest(`reviews?b=${this.bookId}&p=${this.page}`).then(result => {
             this.reviewCount = Math.ceil(result.data.reviewsTotal / 5);
             this.reviews = result.data.reviews;
-            console.log(this.reviews)
+            console.log(this.reviewCount)
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         });
