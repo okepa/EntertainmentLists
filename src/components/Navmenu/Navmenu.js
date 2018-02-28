@@ -17,7 +17,7 @@ export default class Navmenu extends Vue {
 
     secureNavigation = [
         { title: 'Book List', route: '/book-list'},
-        { title: 'Profile', route: '/profile/user-information'}
+        { title: 'Settings', route: '/settings/user-information'}
     ]
     
     created(){

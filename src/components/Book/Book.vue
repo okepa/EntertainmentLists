@@ -72,17 +72,21 @@
                         </v-card>
                     </v-flex>
                     <!-- Similar books -->
-                    <v-flex d-flex xs9 class="text-xs-left" fill-height>
+                    <v-flex d-flex xs9 class="text-xs-left">
                         <v-card>
                             <v-flex xs12>
                                 <v-card-title primary-title class="title mb-0">
                                     Similar Books
                                 </v-card-title>
                             </v-flex>
-                            <v-flex xs12 justify-center class="pa-3 text-xs-center align-center mx-auto" >
-                                <v-carousel style="height:400px; width:275px; margin:auto;" class="text-xs-center mx-auto align-center" >
-                                    <v-carousel-item v-if="item.volumeInfo.imageLinks != null" v-for="(item,i) in similarBooks" :src="item.volumeInfo.imageLinks.thumbnail" :key="i" style="background-size: 275px" @click="viewSimilarBook(item.id)" class="click"></v-carousel-item>
+                            <v-flex xs12 justify-center class="pa-3 text-xs-center align-center mx-auto" v-if="this.book.categories != null">
+                                <v-carousel style="height:400px; width:275px; margin:auto;" class="text-xs-center mx-auto align-center">
+                                    <v-carousel-item v-if="item.volumeInfo.imageLinks != null" v-for="(item,i) in similarBooks" :src="item.volumeInfo.imageLinks.thumbnail"
+                                        :key="i" style="background-size: 275px" @click="viewSimilarBook(item.id)" class="click"></v-carousel-item>
                                 </v-carousel>
+                            </v-flex>
+                            <v-flex xs12 justify-center class="pa-3 text-xs-center align-center mx-auto" v-else>
+                                There are no similar book
                             </v-flex>
                         </v-card>
                     </v-flex>

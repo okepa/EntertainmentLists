@@ -6,10 +6,11 @@ import Register from '@/components/Register/Register.vue'
 import Books from '@/components/Books/Books.vue'
 import Book from '@/components/Book/Book.vue'
 import BookList from '@/components/BookList/BookList.vue'
-import Profile from '@/components/Profile/Profile.vue'
+import Settings from '@/components/Settings/Settings.vue'
 import UserInformation from '@/components/UserInformation/UserInformation.vue'
 import Reviews from '@/components/Reviews/Reviews.vue'
 import Users from '@/components/Users/Users.vue'
+import Profile from '@/components/Profile/Profile.vue'
 import AuthenticationService from '@/services/AuthenticationService'
 import { EventBus } from '../main'
 
@@ -72,9 +73,9 @@ export default new Router({
     beforeEnter: checkLoginStatus
   },
   {
-    path: '/profile',
-    name: 'Profile',
-    component: Profile,
+    path: '/settings',
+    name: 'Settings',
+    component: Settings,
     beforeEnter: requireAuth,
     children: [{
       path: 'user-information',
@@ -96,6 +97,12 @@ export default new Router({
     component: Users,
     beforeEnter: checkLoginStatus
   },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
+    beforeEnter: checkLoginStatus
+  }
   ]
 })
 

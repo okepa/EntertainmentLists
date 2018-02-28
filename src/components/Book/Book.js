@@ -115,24 +115,22 @@ export default class Book extends Vue {
      * Get similar books depending on category
      */
     getSimilarBooks() {
-        this.search += `subject:${this.book.categories[0]}`;
-        BooksHttpRequestsService.getBooksRequest(`${this.search}`).then(total => {
-            var randomNumber = 0;
-            if (total.data.totalItems >= 10) {
-                randomNumber = Math.floor((Math.random() * total.data.totalItems) + 0) - 10;
-            }
-            BooksHttpRequestsService.getBooksRequest(`${this.search}&startIndex=${randomNumber}`).then(result => {
-                this.similarBooks = result.data.items;
-                console.log(this.similarBooks)
-                for(var i = 0; i < 10; i++)
-                console.log(this.similarBooks[i].volumeInfo.imageLinks)
+        if (this.book.categories != null) {
+            this.search += `subject:${this.book.categories[0]}`;
+            BooksHttpRequestsService.getBooksRequest(`${this.search}`).then(total => {
+                var randomNumber = 0;
+                if (total.data.totalItems >= 10) {
+                    randomNumber = Math.floor((Math.random() * total.data.totalItems) + 0) - 10;
+                }
+                BooksHttpRequestsService.getBooksRequest(`${this.search}&startIndex=${randomNumber}`).then(result => {
+                    this.similarBooks = result.data.items;
+                }).catch(err => {
+                    EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+                });
             }).catch(err => {
                 EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
             });
-        }).catch(err => {
-            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
-        });
-
+        }
     }
 
     viewSimilarBook(id) {

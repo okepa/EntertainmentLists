@@ -13,7 +13,7 @@
                         <v-flex xs3 pr-3>
                             <v-text-field name="publisher" label="Publisher" v-model="publisher" class="input-group--focused"></v-text-field>
                         </v-flex>
-                        <v-flex xs3 pr-3>
+                        <v-flex xs3 pr-3 class="text-xs-center">
                             <v-btn @click="getBooks" class="primary">Search</v-btn>
                         </v-flex>
                     </v-layout>

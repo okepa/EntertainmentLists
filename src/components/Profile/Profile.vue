@@ -1,32 +1,41 @@
 <template>
-    <v-container fluid grid-list-md>
-        <v-layout row>
-            <v-flex d-flex xs3>
-                <v-card>
-                    <v-list class="pt-0 pb-0">
-                        <v-divider></v-divider>
-                        <v-list-tile @click="userInformation.active=true; reviews.active=false" :to="userInformation.route">
-                            <v-list-tile-content>
-                                <v-list-tile-title>{{userInformation.title}}</v-list-tile-title>
-                            </v-list-tile-content>
-                        </v-list-tile>
-                        <v-divider></v-divider>
-                        <v-list-tile @click="reviews.active=true; userInformation.active=false" :to="reviews.route">
-                            <v-list-tile-content>
-                                <v-list-tile-title>{{reviews.title}}</v-list-tile-title>
-                            </v-list-tile-content>
-                        </v-list-tile>
-                        <v-divider></v-divider>
-                    </v-list>
-                </v-card>
-            </v-flex>
-            <v-flex d-flex xs9>
-                <v-card>
-                    <router-view></router-view>
-                </v-card>
-            </v-flex>
-        </v-layout>
-    </v-container>
+        <v-container fluid grid-list-md>
+            <v-card>
+                <v-card-text>
+                    <v-layout row>
+                        <v-flex xs3 pr-3>
+                            <v-text-field name="title" label="Title" v-model="title" class="input-group--focused"></v-text-field>
+                        </v-flex>
+                        <v-flex xs3 pr-3>
+                            <v-text-field name="author" label="Author" v-model="author" class="input-group--focused"></v-text-field>
+                        </v-flex>
+                        <v-flex xs3 pr-3>
+                            <v-text-field name="publisher" label="Publisher" v-model="publisher" class="input-group--focused"></v-text-field>
+                        </v-flex>
+                        <v-flex xs3 pr-3 class="text-xs-center">
+                            <v-btn @click="getBooks" class="primary">Search</v-btn>
+                        </v-flex>
+                    </v-layout>
+                </v-card-text>
+            </v-card>
+            <!-- Displayed results in data table -->
+            <v-layout row>
+                <v-flex class="text-xs-center">
+                    <v-data-table v-bind:headers="headers" :items="finalBooks" class="elevation-1" :total-items="totalItems" rows-per-page-text="10" :rows-per-page-items=[10] :pagination.sync="pagination">
+                        <template slot="items" slot-scope="props">
+                            <tr @click="viewBook(props.item.id)">
+                                <td class="text-xs-left">{{ props.item.volumeInfo.title }}</td>
+                                <td v-if="props.item.volumeInfo.authors != null" class="text-xs-left">{{ props.item.volumeInfo.authors[0] }}</td>
+                                <td v-else></td>
+                                <td class="text-xs-left">{{ props.item.volumeInfo.publisher }}</td>
+                                <td class="text-xs-left">{{ props.item.volumeInfo.description }}</td>
+                                <td class="text-xs-left">{{ bookRatingDisplay(props.item.bookRating) }}</td>
+                            </tr>
+                        </template>
+                    </v-data-table>
+                </v-flex>
+            </v-layout>
+        </v-container>
 </template>
 
 <script src="./Profile.js"></script>

@@ -18,7 +18,7 @@
                     <v-card-text>
                         <div v-for="review in reviews">
                             <v-card class="mb-1">
-                                <v-flex xs12 v-if="location == '/profile/reviews'">
+                                <v-flex xs12 v-if="location == '/settings/reviews'">
                                     <v-card-title primary-title class="headline mb-0 pb-0 pt-0">
                                         {{review.bookTitle}}
                                         <v-spacer></v-spacer>
@@ -28,7 +28,13 @@
                                 <v-flex xs12 v-if="location == '/book/:bookid'">
                                     <v-card-title class="subheading">
                                         <v-spacer></v-spacer>
-                                        <a @click="userBookList(review.usernameId._id)">{{review.usernameId.username}}</a>
+                                        <div v-if="review.usernameId._id == usernameId">
+                                                {{review.usernameId.username}}
+                                        </div>
+                                        <div v-else>
+                                                <a @click="userBookList(review.usernameId._id)">{{review.usernameId.username}}</a>
+                                        </div>
+
                                     </v-card-title>
                                 </v-flex>
                                 <v-flex xs12>

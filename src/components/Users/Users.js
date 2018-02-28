@@ -16,7 +16,6 @@ export default class Users extends Vue {
     getUsers() {
         HttpRequestsService.getRequest("users").then(result => {
             this.users = result.data.users;
-            console.log(this.users);
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         });

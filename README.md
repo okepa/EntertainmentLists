@@ -36,3 +36,4 @@
 
 > Similar book - first image not showing up - vuetify bug
 > Shouldnt be able to view your own list from third person
+> Footer needs more information

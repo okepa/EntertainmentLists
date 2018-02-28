@@ -16,10 +16,11 @@ export default class Reviews extends Vue {
     readingRating = ["", 1, 2, 3, 4, 5];
     loggedIn = AuthenticationService.loggedIn();
     review = {};
+    usernameId = Vue.cookie.get('usernameId');
 
     created() {
         this.bookId = this.$route.params.bookid;
-        if (this.$route.path == "/profile/reviews") {
+        if (this.$route.path == "/settings/reviews") {
             this.location = this.$route.path;
             this.getUserReviews();
         }
@@ -54,7 +55,6 @@ export default class Reviews extends Vue {
         HttpRequestsService.getRequest(`user-reviews?p=${this.page}`).then(result => {
             this.reviewCount = Math.ceil(result.data.reviewsTotal / 5);
             this.reviews = result.data.reviews;
-            console.log(this.reviewCount);
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })
@@ -64,7 +64,6 @@ export default class Reviews extends Vue {
         HttpRequestsService.getRequest(`reviews?b=${this.bookId}&p=${this.page}`).then(result => {
             this.reviewCount = Math.ceil(result.data.reviewsTotal / 5);
             this.reviews = result.data.reviews;
-            console.log(this.reviewCount)
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         });

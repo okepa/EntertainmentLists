@@ -4,5 +4,13 @@ import { EventBus } from '../../main'
 
 @Component
 export default class Footer extends Vue {
-    navigation = [{Title: "Home", Link: "/home"}, {Title: "Books", Link: "/books"}, {Title: "Users", Link: "/users"}]
+    navigation = [
+        { title: "Home", route: "/home" },
+        { title: "Books", route: "/books" },
+        { title: "Users", route: "/users" }
+    ]
+    secureNavigation = [
+        { title: 'Book List', route: '/book-list' },
+        { title: 'Settings', route: '/settings/user-information' }
+    ]
 }
