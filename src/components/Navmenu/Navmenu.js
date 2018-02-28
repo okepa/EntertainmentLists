@@ -11,7 +11,8 @@ export default class Navmenu extends Vue {
 
     navigation = [
         { title: 'Home', route: '/home'},
-        { title: 'Books', route: '/books'}
+        { title: 'Books', route: '/books'},
+        { title: 'Users', route: '/users'}
     ];
 
     secureNavigation = [

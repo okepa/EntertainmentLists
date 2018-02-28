@@ -27,12 +27,12 @@
 - [x] View your profile
 - [x] Update your profile
 - [x] Find similar books
+- [ ] Search for other users
 - [x] View other users book list
+- [ ] See statistics of how many books you have read
+- [ ] See statistics of how many books other users have read
 
 ## Bugs
 
-> Similar book first image not showing up - vuetify bug
-> Pagination for book not working correctly - can't use total items for pagination
-> Need to upgrade to vuetify 1
-> Change book page so that the word null is not searched for
-
+> Similar book - first image not showing up - vuetify bug
+> Shouldnt be able to view your own list from third person

@@ -4,5 +4,5 @@ import { EventBus } from '../../main'
 
 @Component
 export default class Footer extends Vue {
-    navigation = [{Title: "Home", Link: "/home"}, {Title: "Books", Link: "/books"}]
+    navigation = [{Title: "Home", Link: "/home"}, {Title: "Books", Link: "/books"}, {Title: "Users", Link: "/users"}]
 }

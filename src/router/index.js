@@ -9,6 +9,7 @@ import BookList from '@/components/BookList/BookList.vue'
 import Profile from '@/components/Profile/Profile.vue'
 import UserInformation from '@/components/UserInformation/UserInformation.vue'
 import Reviews from '@/components/Reviews/Reviews.vue'
+import Users from '@/components/Users/Users.vue'
 import AuthenticationService from '@/services/AuthenticationService'
 import { EventBus } from '../main'
 
@@ -68,7 +69,7 @@ export default new Router({
     path: '/book-list/:id',
     name: 'BookList',
     component: BookList,
-    beforeEnter: requireAuth
+    beforeEnter: checkLoginStatus
   },
   {
     path: '/profile',
@@ -88,7 +89,13 @@ export default new Router({
       beforeEnter: requireAuth
     },
     ]
-  }
+  },
+  {
+    path: '/users',
+    name: 'Users',
+    component: Users,
+    beforeEnter: checkLoginStatus
+  },
   ]
 })
 

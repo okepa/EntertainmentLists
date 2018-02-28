@@ -1,7 +1,7 @@
 <template>
-    <v-footer class="pa-3 primary" >
-        <v-layout row wrap justify-center>
-            <v-btn dark flat v-for="nav in navigation" :key="nav.Title" :to="nav.Link">
+    <v-footer height="auto" class="primary">
+        <v-layout row wrap justify-center dark>
+            <v-btn color="white" flat v-for="nav in navigation" :key="nav.Title" :to="nav.Link">
                 {{ nav.Title }}
             </v-btn>
             <v-flex xs12 py-3 text-xs-center white--text>

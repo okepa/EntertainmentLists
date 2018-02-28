@@ -22,18 +22,18 @@
             <!-- Displayed results in data table -->
             <v-layout row>
                 <v-flex class="text-xs-center">
-                    <v-data-table v-bind:headers="headers" :items="finalBooks" hide-actions class="elevation-1">
+                    <v-data-table v-bind:headers="headers" :items="finalBooks" class="elevation-1" :total-items="totalItems" rows-per-page-text="10" :rows-per-page-items=[10] :pagination.sync="pagination">
                         <template slot="items" slot-scope="props">
                             <tr @click="viewBook(props.item.id)">
                                 <td class="text-xs-left">{{ props.item.volumeInfo.title }}</td>
-                                <td class="text-xs-left">{{ props.item.volumeInfo.authors[0] }}</td>
+                                <td v-if="props.item.volumeInfo.authors != null" class="text-xs-left">{{ props.item.volumeInfo.authors[0] }}</td>
+                                <td v-else></td>
                                 <td class="text-xs-left">{{ props.item.volumeInfo.publisher }}</td>
                                 <td class="text-xs-left">{{ props.item.volumeInfo.description }}</td>
                                 <td class="text-xs-left">{{ bookRatingDisplay(props.item.bookRating) }}</td>
                             </tr>
                         </template>
                     </v-data-table>
-                    <v-pagination v-if="finalBooks.length > 0" :length="pages" v-model="page" ></v-pagination>
                 </v-flex>
             </v-layout>
         </v-container>
