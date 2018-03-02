@@ -1,7 +1,8 @@
 <template>
+        <v-flex xs6 offset-xs3>
     <v-container align-content-center>
         <v-layout row>
-            <v-flex xs6 offset-xs3 @keyup.enter="login">
+            <v-flex @keyup.enter="login">
                 <v-card>
                     <v-card-title>
                         <v-layout row>
@@ -31,6 +32,7 @@
             </v-flex>
         </v-layout>
     </v-container>
+</v-flex>
 </template>
 
 <script src="./Login.js"></script>

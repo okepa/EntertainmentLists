@@ -8,22 +8,22 @@
                     <v-data-table v-bind:headers="headers" :items="readingBookList" hide-actions class="elevation-1 mb-3">
                         <template slot="items" slot-scope="props">
                             <tr>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookTitle }}</td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left click">{{ props.item.bookTitle }}</td>
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left click">
                                     <div v-for="author in props.item.bookAuthor">
                                         {{ author }}
                                     </div>
                                 </td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookPublisher }}</td>
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left click">{{ props.item.bookPublisher }}</td>
                                 <td v-if="!readOnly">
                                     <v-select @change="changeRating(props.item.bookId)" v-bind:items="readingRating" v-model="props.item.bookRating" label="Rating"
                                         class="input-group--focused"></v-select>
                                 </td>
-                                <td v-else @click="viewBook(props.item.bookId)">
+                                <td v-else @click="viewBook(props.item.bookId)" class="click">
                                     {{ props.item.bookRating }}
                                 </td>
                                 <td v-if="!readOnly">
-                                    <v-btn color="error" flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
+                                    <v-btn color="error" flat small @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
                             </tr>
                         </template>
@@ -33,22 +33,22 @@
                     <v-data-table v-bind:headers="headers" :items="readBookList" hide-actions class="elevation-1 mb-3">
                         <template slot="items" slot-scope="props">
                             <tr>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookTitle }}</td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left click">{{ props.item.bookTitle }}</td>
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left click">
                                     <div v-for="author in props.item.bookAuthor">
                                         {{ author }}
                                     </div>
                                 </td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookPublisher }}</td>
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left click">{{ props.item.bookPublisher }}</td>
                                 <td v-if="!readOnly">
                                     <v-select @change="changeRating(props.item.bookId)" v-bind:items="readingRating" v-model="props.item.bookRating" label="Rating"
                                         class="input-group--focused"></v-select>
                                 </td>
-                                <td v-else @click="viewBook(props.item.bookId)">
+                                <td v-else @click="viewBook(props.item.bookId)" class="click">
                                     {{ props.item.bookRating }}
                                 </td>
                                 <td v-if="!readOnly">
-                                    <v-btn color="error" flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
+                                    <v-btn color="error" flat small @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
                             </tr>
                         </template>
@@ -58,22 +58,22 @@
                     <v-data-table v-bind:headers="headers" :items="planToReadBookList" hide-actions class="elevation-1 mb-3">
                         <template slot="items" slot-scope="props">
                             <tr>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookTitle }}</td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left click">{{ props.item.bookTitle }}</td>
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left click">
                                     <div v-for=" author in props.item.bookAuthor">
                                         {{ author }}
                                     </div>
                                 </td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookPublisher }}</td>
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left click">{{ props.item.bookPublisher }}</td>
                                 <td v-if="!readOnly">
                                     <v-select @change="changeRating(props.item.bookId)" v-bind:items="readingRating" v-model="props.item.bookRating" label="Rating"
                                         class="input-group--focused"></v-select>
                                 </td>
-                                <td v-else @click="viewBook(props.item.bookId)">
+                                <td v-else @click="viewBook(props.item.bookId)" class="click">
                                     {{ props.item.bookRating }}
                                 </td>
                                 <td v-if="!readOnly">
-                                    <v-btn color="error" flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
+                                    <v-btn color="error" small flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
                             </tr>
                         </template>
@@ -83,22 +83,22 @@
                     <v-data-table v-bind:headers="headers" :items="abandonedBookList" hide-actions class="elevation-1 mb-3">
                         <template slot="items" slot-scope="props">
                             <tr>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookTitle }}</td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left click">{{ props.item.bookTitle }}</td>
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left click">
                                     <div v-for=" author in props.item.bookAuthor">
                                         {{ author }}
                                     </div>
                                 </td>
-                                <td @click="viewBook(props.item.bookId)" class="text-xs-left">{{ props.item.bookPublisher }}</td>
+                                <td @click="viewBook(props.item.bookId)" class="text-xs-left click">{{ props.item.bookPublisher }}</td>
                                 <td v-if="!readOnly">
                                     <v-select @change="changeRating(props.item.bookId)" v-bind:items="readingRating" v-model="props.item.bookRating" label="Rating"
                                         class="input-group--focused"></v-select>
                                 </td>
-                                <td v-else @click="viewBook(props.item.bookId)">
+                                <td v-else @click="viewBook(props.item.bookId)" class="click">
                                     {{ props.item.bookRating }}
                                 </td>
                                 <td v-if="!readOnly">
-                                    <v-btn color="error" flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
+                                    <v-btn color="error" small flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
                             </tr>
                         </template>

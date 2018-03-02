@@ -19,7 +19,7 @@
                     <v-data-table v-bind:headers="headers" :items="users" class="elevation-1">
                         <template slot="items" slot-scope="props">
                             <tr @click="viewUser(props.item._id)">
-                                <td class="text-xs-left">{{ props.item.username }}</td>
+                                <td class="text-xs-left click">{{ props.item.username }}</td>
                             </tr>
                         </template>
                     </v-data-table>
