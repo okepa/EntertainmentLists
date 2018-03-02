@@ -37,5 +37,3 @@
 > Similar book - first image not showing up - vuetify bug
 > Missing thumbnail on books page
 > Missing thumnail on profile page
-> Login footer still weird
-> Register footer still weird

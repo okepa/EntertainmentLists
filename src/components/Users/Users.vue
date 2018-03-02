@@ -5,7 +5,7 @@
                 <v-card-text>
                     <v-layout row>
                         <v-flex xs6 pr-3>
-                            <v-text-field name="username" label="Username" v-model="username" class="input-group--focused"></v-text-field>
+                            <v-text-field v-on:keyup.enter="getUsers" name="username" label="Username" v-model="username.username" class="input-group--focused"></v-text-field>
                         </v-flex>
                         <v-flex xs6 pr-3 class="text-xs-center">
                             <v-btn @click="getUsers" class="primary">Search</v-btn>
