@@ -65,7 +65,7 @@
                             </v-card-text>
                             <v-card-text v-else>
                                 <v-flex xs12>
-                                    <v-btn class="primary" to="/login" dark flat>Log In</v-btn>
+                                    <v-btn color="primary" to="/login" dark flat>Log In</v-btn>
                                 </v-flex>
                             </v-card-text>
                         </v-card>

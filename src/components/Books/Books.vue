@@ -5,13 +5,13 @@
                 <v-card-text>
                     <v-layout row>
                         <v-flex xs3 pr-3>
-                            <v-text-field name="title" label="Title" v-model="title" class="input-group--focused"></v-text-field>
+                            <v-text-field v-on:keyup.enter="getBooks" name="title" label="Title" v-model="title" class="input-group--focused"></v-text-field>
                         </v-flex>
                         <v-flex xs3 pr-3>
-                            <v-text-field name="author" label="Author" v-model="author" class="input-group--focused"></v-text-field>
+                            <v-text-field v-on:keyup.enter="getBooks" name="author" label="Author" v-model="author" class="input-group--focused"></v-text-field>
                         </v-flex>
                         <v-flex xs3 pr-3>
-                            <v-text-field name="publisher" label="Publisher" v-model="publisher" class="input-group--focused"></v-text-field>
+                            <v-text-field v-on:keyup.enter="getBooks" name="publisher" label="Publisher" v-model="publisher" class="input-group--focused"></v-text-field>
                         </v-flex>
                         <v-flex xs3 pr-3 class="text-xs-center">
                             <v-btn @click="getBooks" class="primary">Search</v-btn>
