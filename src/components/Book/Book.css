@@ -1,12 +1,5 @@
-.bold{
-    font-weight: bold
-}
-
 .imageSize {
     height: 50px;
     width: 50%;
 }
 
-.click {
-    cursor: pointer;
-}

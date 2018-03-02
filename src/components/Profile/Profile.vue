@@ -1,41 +1,48 @@
 <template>
+    <v-flex xs8 offset-xs2>
         <v-container fluid grid-list-md>
-            <v-card>
-                <v-card-text>
-                    <v-layout row>
-                        <v-flex xs3 pr-3>
-                            <v-text-field name="title" label="Title" v-model="title" class="input-group--focused"></v-text-field>
+            <v-layout row wrap>
+                <!-- Left user details -->
+                <v-flex d-flex xs3 class="text-xs-left">
+                    <v-card>
+                        <v-flex xs12>
+                            <!-- Thumbnail placeholder -->
+                            <!-- <v-card-media v-if="book.imageLinks != null" :src="book.imageLinks.thumbnail" height="225"></v-card-media> -->
                         </v-flex>
-                        <v-flex xs3 pr-3>
-                            <v-text-field name="author" label="Author" v-model="author" class="input-group--focused"></v-text-field>
+                        <v-card-text>
+                            <v-flex xs12>
+                                <span class="bold">Username:</span>
+                                <p>
+                                    {{userInformation.username}}</p>
+                            </v-flex>
+                            <v-flex xs12 v-if="userInformation._id != usernameId" class="text-xs-center">
+                                <v-btn color="primary" flat small @click="toBookList(userInformation._id)">Book List</v-btn>
+                            </v-flex>
+                        </v-card-text>
+                    </v-card>
+                </v-flex>
+                <!-- Center stats -->
+                <v-flex d-flex xs9 class="text-xs-left">
+                    <v-card>
+                        <v-flex xs12>
+                            <v-card-title primary-title class="headline mb-0">
+                                Statistics
+                            </v-card-title>
                         </v-flex>
-                        <v-flex xs3 pr-3>
-                            <v-text-field name="publisher" label="Publisher" v-model="publisher" class="input-group--focused"></v-text-field>
-                        </v-flex>
-                        <v-flex xs3 pr-3 class="text-xs-center">
-                            <v-btn @click="getBooks" class="primary">Search</v-btn>
-                        </v-flex>
-                    </v-layout>
-                </v-card-text>
-            </v-card>
-            <!-- Displayed results in data table -->
-            <v-layout row>
-                <v-flex class="text-xs-center">
-                    <v-data-table v-bind:headers="headers" :items="finalBooks" class="elevation-1" :total-items="totalItems" rows-per-page-text="10" :rows-per-page-items=[10] :pagination.sync="pagination">
-                        <template slot="items" slot-scope="props">
-                            <tr @click="viewBook(props.item.id)">
-                                <td class="text-xs-left">{{ props.item.volumeInfo.title }}</td>
-                                <td v-if="props.item.volumeInfo.authors != null" class="text-xs-left">{{ props.item.volumeInfo.authors[0] }}</td>
-                                <td v-else></td>
-                                <td class="text-xs-left">{{ props.item.volumeInfo.publisher }}</td>
-                                <td class="text-xs-left">{{ props.item.volumeInfo.description }}</td>
-                                <td class="text-xs-left">{{ bookRatingDisplay(props.item.bookRating) }}</td>
-                            </tr>
-                        </template>
-                    </v-data-table>
+                        <v-card-text>
+                            <v-flex xs12 v-if="readingCount == 0 && readCount == 0 && planToReadCount == 0 && abandonedCount == 0" class="text-xs-center">
+                                The user has not added any books to their list
+                            </v-flex>
+                            <v-flex xs12 v-else >
+                                <book-list-component></book-list-component>
+                            </v-flex>
+                        </v-card-text>
+                    </v-card>
                 </v-flex>
             </v-layout>
         </v-container>
+    </v-flex>
 </template>
 
 <script src="./Profile.js"></script>
+<style src="./Profile.css"></style>

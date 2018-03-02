@@ -105,6 +105,6 @@ export default class Reviews extends Vue {
     }
 
     userBookList(usernameId){
-        this.$router.push(`/book-list/${usernameId}`);
+        this.$router.push(`/profile/${usernameId}`);
     }
 }

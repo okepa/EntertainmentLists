@@ -15,7 +15,7 @@
                             </div>
                         </div>
                     </v-card-title>
-                    <v-card-text>
+                    <v-card-text v-if="review.length > 0">
                         <div v-for="review in reviews">
                             <v-card class="mb-1">
                                 <v-flex xs12 v-if="location == '/settings/reviews'">
@@ -52,6 +52,9 @@
                             </v-card>
                         </div>
                         <v-pagination v-if="reviews.length > 0" :length="reviewCount" v-model="page" :total-visible="5"></v-pagination>
+                    </v-card-text>
+                    <v-card-text v-else class="text-xs-center">
+                        There are no reviews here
                     </v-card-text>
                 </v-flex>
             </v-layout>

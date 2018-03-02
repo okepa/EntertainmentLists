@@ -68,7 +68,7 @@ export default class BookList extends Vue {
     }
 
     getUserBookList(){
-        HttpRequestsService.getRequest(`other-user?username=${this.$route.params.id}`).then(result => {
+        HttpRequestsService.getRequest(`user-book-list?username=${this.$route.params.id}`).then(result => {
             this.readOnly = true;
             this.readingBookList = result.data.readingStatus;
             this.readBookList = result.data.readStatus;

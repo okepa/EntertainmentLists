@@ -1,5 +1,5 @@
 <template>
-    <v-flex xs8 offset-xs2>
+    <v-flex>
         <v-container fluid grid-list-md>
             <v-layout row>
                 <v-flex d-flex xs3>

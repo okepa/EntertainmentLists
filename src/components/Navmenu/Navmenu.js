@@ -17,11 +17,12 @@ export default class Navmenu extends Vue {
 
     secureNavigation = [
         { title: 'Book List', route: '/book-list'},
+        { title: 'Profile', route: '/profile'},
         { title: 'Settings', route: '/settings/user-information'}
     ]
     
     created(){
-        EventBus.$on('navmenuLoginStatus', () => {
+        EventBus.$on('loginStatus', () => {
             this.loginStatus();
         });
         this.loginStatus()

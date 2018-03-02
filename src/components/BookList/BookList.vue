@@ -22,7 +22,7 @@
                                 <td v-else @click="viewBook(props.item.bookId)">
                                     {{ props.item.bookRating }}
                                 </td>
-                                <td>
+                                <td v-if="!readOnly">
                                     <v-btn color="error" flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
                             </tr>
@@ -47,7 +47,7 @@
                                 <td v-else @click="viewBook(props.item.bookId)">
                                     {{ props.item.bookRating }}
                                 </td>
-                                <td>
+                                <td v-if="!readOnly">
                                     <v-btn color="error" flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
                             </tr>
@@ -72,7 +72,7 @@
                                 <td v-else @click="viewBook(props.item.bookId)">
                                     {{ props.item.bookRating }}
                                 </td>
-                                <td>
+                                <td v-if="!readOnly">
                                     <v-btn color="error" flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
                             </tr>
@@ -97,7 +97,7 @@
                                 <td v-else @click="viewBook(props.item.bookId)">
                                     {{ props.item.bookRating }}
                                 </td>
-                                <td>
+                                <td v-if="!readOnly">
                                     <v-btn color="error" flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
                             </tr>

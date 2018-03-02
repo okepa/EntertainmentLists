@@ -1,5 +1,4 @@
 <template>
-    <div>
         <v-flex xs8 offset-xs2>
             <v-container fluid grid-list-md>
                 <v-layout row wrap>
@@ -99,7 +98,6 @@
                 </v-layout>
             </v-container>
         </v-flex>
-    </div>
 </template>
 
 <script src="./Book.js"></script>

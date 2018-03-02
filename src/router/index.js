@@ -102,6 +102,12 @@ export default new Router({
     name: 'Profile',
     component: Profile,
     beforeEnter: checkLoginStatus
+  },
+  {
+    path: '/profile/:id',
+    name: 'UserProfile',
+    component: Profile,
+    beforeEnter: checkLoginStatus
   }
   ]
 })
@@ -120,6 +126,5 @@ function requireAuth(to, from, next) {
 
 function checkLoginStatus(to, from, next) {
   EventBus.$emit('loginStatus');
-  EventBus.$emit('navmenuLoginStatus')
   next()
 }

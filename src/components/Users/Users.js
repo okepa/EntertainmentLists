@@ -22,6 +22,6 @@ export default class Users extends Vue {
     }
 
     viewUser(id) {
-        this.$router.push(`/user/${id}`);
+        this.$router.push(`/profile/${id}`);
     }
 }
