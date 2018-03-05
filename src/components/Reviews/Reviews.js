@@ -17,13 +17,22 @@ export default class Reviews extends Vue {
     loggedIn = AuthenticationService.loggedIn();
     review = {};
     usernameId = Vue.cookie.get('usernameId');
+    otherUsernameId = "";
 
     created() {
         this.bookId = this.$route.params.bookid;
-        if (this.$route.path == "/settings/reviews") {
+        //Get all the reviews for the user
+        if (this.$route.path == "/settings/reviews" || this.$route.path == "/profile") {
             this.location = this.$route.path;
             this.getUserReviews();
         }
+        //Get all the reviews for other users
+        else if (this.$route.matched[0].path == "/profile/:profileid") {
+            this.otherUsernameId = this.$route.params.profileid
+            this.location = this.$route.path;
+            this.getOtherUserReviews();
+        }
+        //Get all the reviews for the book
         else if (this.$route.matched[0].path == "/book/:bookid") {
             this.review = this.reviewInfo;
             this.location = this.$route.matched[0].path;
@@ -40,6 +49,17 @@ export default class Reviews extends Vue {
     @Watch('page')
     onPageChange(val) {
         this.getUserReviews();
+        if (this.$route.path == "/settings/reviews" || this.$route.path == "/profile") {
+            this.getUserReviews();
+        }
+        //Get all the reviews for other users
+        else if (this.$route.matched[0].path == "/profile/:profileid") {
+            this.getOtherUserReviews();
+        }
+        //Get all the reviews for the book
+        else if (this.$route.matched[0].path == "/book/:bookid") {
+            this.getBookReviews();
+        }
     }
 
     @Watch('$route')
@@ -78,6 +98,15 @@ export default class Reviews extends Vue {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })
     }
+    //Get other users reviews
+    getOtherUserReviews() {
+        HttpRequestsService.getRequest(`other-user-reviews?usernameId=${this.otherUsernameId}&p=${this.page}`).then(result => {
+            this.reviewCount = Math.ceil(result.data.reviewsTotal / 5);
+            this.reviews = result.data.reviews;
+        }).catch(err => {
+            EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+        })
+    }
 
     postReview() {
         this.$validator.validateAll({ "Title": this.review.reviewTitle, "Rating": this.review.reviewRating, "Content": this.review.reviewContent }).then((result) => {
@@ -104,7 +133,7 @@ export default class Reviews extends Vue {
         })
     }
 
-    userBookList(usernameId){
+    userBookList(usernameId) {
         this.$router.push(`/profile/${usernameId}`);
     }
 }

@@ -12,7 +12,7 @@ export default class Books extends Vue {
     author = null;
     publisher = null;
     startIndex = 0;
-    headers = [{ text: "Title", value: "title", align: "left" }, { text: "Author", value: "authors", align: "left" }, { text: "Publisher", value: "publisher", align: "left" }, { text: "Description", value: "description", align: "left" }, { text: "Rating", value: "bookRating", align: "left" }]
+    headers = [{ text: "Thumbnail", value: "thumbnail", align: "left" }, { text: "Title", value: "title", align: "left" }, { text: "Author", value: "authors", align: "left" }, { text: "Publisher", value: "publisher", align: "left" }, { text: "Description", value: "description", align: "left" }, { text: "Rating", value: "bookRating", align: "left" }]
     totalItems = 0;
     pagination = {};
 
@@ -52,6 +52,7 @@ export default class Books extends Vue {
                     this.finalBooks = this.books;
                     this.totalItems = result.data.totalItems
                     this.pages = Math.ceil(result.data.totalItems / 10);
+                    console.log(this.finalBooks)
                 });
             }).catch(err => {
                 EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });

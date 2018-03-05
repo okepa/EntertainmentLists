@@ -25,6 +25,8 @@
                     <v-data-table v-bind:headers="headers" :items="finalBooks" class="elevation-1" :total-items="totalItems" rows-per-page-text="10" :rows-per-page-items=[10] :pagination.sync="pagination">
                         <template slot="items" slot-scope="props">
                             <tr @click="viewBook(props.item.id)">
+                                <td v-if="props.item.volumeInfo.imageLinks != null" class="text-xs-left pa-1"><img :src="props.item.volumeInfo.imageLinks.smallThumbnail" height="175" width="125"></img> </td>
+                                <td v-else></td>
                                 <td class="text-xs-left">{{ props.item.volumeInfo.title }}</td>
                                 <td v-if="props.item.volumeInfo.authors != null" class="text-xs-left">{{ props.item.volumeInfo.authors[0] }}</td>
                                 <td v-else></td>

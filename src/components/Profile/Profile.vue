@@ -30,13 +30,21 @@
                             </v-card-title>
                         </v-flex>
                         <v-card-text>
-                            <v-flex xs12 v-if="readingCount == 0 && readCount == 0 && planToReadCount == 0 && abandonedCount == 0" class="text-xs-center">
+                            <v-flex xs12 v-if="bookCounts.readingCount == 0 && bookCounts.readCount == 0 && bookCounts.planToReadCount == 0 && bookCounts.abandonedCount == 0" class="text-xs-center">
                                 The user has not added any books to their list
                             </v-flex>
-                            <v-flex xs12 v-else >
-                                <book-list-component></book-list-component>
+                            <v-flex xs12 v-else>
+                                <div class="chartSize">
+                                    <book-list-component :bookCounts="bookCounts"></book-list-component>
+                                </div>
                             </v-flex>
                         </v-card-text>
+                    </v-card>
+                </v-flex>
+                <!-- Center Reviews -->
+                <v-flex d-flex xs12 class="text-xs-left">
+                    <v-card>
+                        <reviews-component></reviews-component>
                     </v-card>
                 </v-flex>
             </v-layout>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-container align-content-center>
+        <v-container align-content-center grid-list-md>
             <v-layout row>
                 <v-flex xs12>
                     <v-card-title primary-title class="headline mb-0">
@@ -15,14 +15,14 @@
                             </div>
                         </div>
                     </v-card-title>
-                    <v-card-text v-if="review.length > 0">
+                    <v-card-text v-if="reviews.length > 0">
                         <div v-for="review in reviews">
-                            <v-card class="mb-1">
-                                <v-flex xs12 v-if="location == '/settings/reviews'">
+                            <v-card class="mb-3">
+                                <v-flex xs12 v-if="location == '/settings/reviews' || location == '/profile'">
                                     <v-card-title primary-title class="headline mb-0 pb-0 pt-0">
                                         {{review.bookTitle}}
                                         <v-spacer></v-spacer>
-                                        <v-btn color="error" flat @click="deleteUserReview(review.bookId)">Delete</v-btn>
+                                        <v-btn v-if="location == '/settings/reviews'" color="error" flat @click="deleteUserReview(review.bookId)">Delete</v-btn>
                                     </v-card-title>
                                 </v-flex>
                                 <v-flex xs12 v-if="location == '/book/:bookid'">

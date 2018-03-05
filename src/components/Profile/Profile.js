@@ -4,22 +4,35 @@ import { EventBus } from '../../main'
 import HttpRequestsService from '../../services/HttpRequestsService';
 import VueCharts from 'vue-chartjs'
 import BookListGraph from '../Graphs/BookListGraph'
+import Reviews from '../Reviews/Reviews'
 
 @Component({
     components: {
-        BookListComponent: BookListGraph
+        BookListComponent: BookListGraph,
+        ReviewsComponent: Reviews
     } 
 })
 export default class Profile extends Vue {
     userInformation = {};
-    readingCount = 0;
-    readCount = 0;
-    planToReadCount = 0;
-    abandonedCount = 0;
+    bookCounts = {
+        readingCount: 0,
+        readCount: 0,
+        planToReadCount: 0,
+        abandonedCount: 0
+    }
     usernameId = Vue.cookie.get('usernameId');
 
     created() {
-        if(this.$route.params.id == null) {
+        if(this.$route.params.profileid == null) {
+            this.getUserInformation();
+        } else {
+            this.getOtherUserInformation();
+        }
+    }
+
+    @Watch('$route.params.profileid')
+    onRouteChange(val){
+        if(this.$route.params.profileid == null) {
             this.getUserInformation();
         } else {
             this.getOtherUserInformation();
@@ -29,22 +42,22 @@ export default class Profile extends Vue {
     getUserInformation() {
         HttpRequestsService.getRequest("profile").then(result => {
             this.userInformation = result.data.user;
-            this.readingCount = result.data.readingCount;
-            this.readCount = result.data.readCount;
-            this.planToReadCount = result.data.planToReadCount;
-            this.abandonedCount = result.data.abandonedCount;
+            this.bookCounts.readingCount = result.data.readingCount;
+            this.bookCounts.readCount = result.data.readCount;
+            this.bookCounts.planToReadCount = result.data.planToReadCount;
+            this.bookCounts.abandonedCount = result.data.abandonedCount;
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         });
     }
 
     getOtherUserInformation() {
-        HttpRequestsService.getRequest(`user-profile?username=${this.$route.params.id}`).then(result => {
+        HttpRequestsService.getRequest(`user-profile?username=${this.$route.params.profileid}`).then(result => {
             this.userInformation = result.data.user;
-            this.readingCount = result.data.readingCount;
-            this.readCount = result.data.readCount;
-            this.planToReadCount = result.data.planToReadCount;
-            this.abandonedCount = result.data.abandonedCount;
+            this.bookCounts.readingCount = result.data.readingCount;
+            this.bookCounts.readCount = result.data.readCount;
+            this.bookCounts.planToReadCount = result.data.planToReadCount;
+            this.bookCounts.abandonedCount = result.data.abandonedCount;
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         })

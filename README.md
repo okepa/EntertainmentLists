@@ -35,5 +35,7 @@
 ## Bugs
 
 > Similar book - first image not showing up - vuetify bug
-> Missing thumbnail on books page
 > Missing thumnail on profile page
+> Refactor api for reviews to use mongoose instead of for loops
+> Profile is highlighted when looking at other users profile
+> Book List is highlighted when looking at other users book lists

@@ -77,6 +77,7 @@ export default new Router({
     name: 'Settings',
     component: Settings,
     beforeEnter: requireAuth,
+    redirect: '/settings/user-information',
     children: [{
       path: 'user-information',
       name: 'UserInformation',
@@ -104,7 +105,7 @@ export default new Router({
     beforeEnter: checkLoginStatus
   },
   {
-    path: '/profile/:id',
+    path: '/profile/:profileid',
     name: 'UserProfile',
     component: Profile,
     beforeEnter: checkLoginStatus
