@@ -4,6 +4,7 @@
 
 ## Features
 
+### Searching for books
 - [ ] View all books - Not possible with limitations of google api
 - [ ] Sort books by title - Not possible with limitations of google api
 - [ ] Sort books by author - Not possible with limitations of google api
@@ -12,25 +13,38 @@
 - [x] Search for books by title
 - [x] Search for books by author
 - [x] Search for books by publisher
-- [ ] Search for books by genre/category - Not possible with limitations of google api
+- [ ] Search for books by genre/category
+
+### Viewing a book
 - [x] View an individual book
+- [x] Find similar books
+
+### Book List
+- [x] View you reading list
 - [x] Add book to your reading list - via book page
 - [x] Edit book on your reading list - via book page
 - [x] Edit book on your reading list - via book list page
 - [x] Delete book from your reading list
-- [x] View you reading list
 - [x] Assign ratings for books
+- [x] View other users book list
+
+### Reviews
 - [x] Write reviews for books
 - [x] View reviews for books
 - [x] View your reviews
-- [x] Delete reviews for books
+- [x] Delete your reviews
+- [x] See other users reviews
+
+### Profile
 - [x] View your profile
-- [x] Update your profile
-- [x] Find similar books
-- [x] View other users book list
 - [x] See statistics of how many books you have read
+- [x] View other users profile
 - [x] See statistics of how many books other users have read
+
+### Users
 - [x] Search for other users
+
+### Other
 - [ ] Send messages to other users
 - [ ] Upload an avatar
 
@@ -38,4 +52,4 @@
 ## Bugs
 
 Similar book - first image not showing up - vuetify bug
-Refactor api for reviews to use mongoose instead of for loops
+Put in placeholder for image upload
