@@ -52,4 +52,4 @@
 ## Bugs
 
 Similar book - first image not showing up - vuetify bug
-Put in placeholder for image upload
+Need to check if the user exists when registering

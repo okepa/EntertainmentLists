@@ -10,15 +10,15 @@ export default class Navmenu extends Vue {
     token = null;
 
     navigation = [
-        { title: 'Home', route: '/home'},
-        { title: 'Books', route: '/books'},
-        { title: 'Users', route: '/users'}
+        { title: 'Home', route: '/home', exact: true},
+        { title: 'Books', route: '/books', exact: true},
+        { title: 'Users', route: '/users', exact: true}
     ];
 
     secureNavigation = [
-        { title: 'Book List', route: '/book-list'},
-        { title: 'Profile', route: '/profile'},
-        { title: 'Settings', route: '/settings'}
+        { title: 'Book List', route: '/book-list', exact: true},
+        { title: 'Profile', route: '/profile', exact: true},
+        { title: 'Settings', route: '/settings', exact: false}
     ]
     
     created(){

@@ -5,10 +5,10 @@
       <v-spacer></v-spacer>
       <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer" dark></v-toolbar-side-icon>
       <v-toolbar-items class="hidden-sm-and-down" v-for="nav in navigation" :key="nav.title">
-        <v-btn flat :to="nav.route" exact exact-active-class>{{ nav.title }}</v-btn>
+        <v-btn flat :to="nav.route" :exact="nav.exact">{{ nav.title }}</v-btn>
       </v-toolbar-items>
       <v-toolbar-items class="hidden-sm-and-down" v-for="nav in secureNavigation" :key="nav.title" v-if="token != null">
-        <v-btn flat :to="nav.route" exact exact-active-class>{{ nav.title }}</v-btn>
+        <v-btn flat :to="nav.route" :exact="nav.exact">{{ nav.title }}</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-layout wrap>
@@ -23,7 +23,7 @@
         <v-list class="pt-0">
           <v-divider></v-divider>
           <div v-for="nav in navigation" :key="nav.title">
-            <v-list-tile :to="nav.route" exact exact-active-class>
+            <v-list-tile :to="nav.route" :exact="nav.exact">
               <v-list-tile-content>
                 <v-list-tile-title>{{ nav.title }}</v-list-tile-title>
               </v-list-tile-content>
@@ -31,7 +31,7 @@
             <v-divider></v-divider>
           </div>
           <div v-for="nav in secureNavigation" :key="nav.title" v-if="token != null" exact>
-          <v-list-tile :to="nav.route" exact exact-active-class>
+          <v-list-tile :to="nav.route" :exact="nav.exact">
             <v-list-tile-content>
               <v-list-tile-title>{{nav.title}}</v-list-tile-title>
             </v-list-tile-content>

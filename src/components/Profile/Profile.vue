@@ -7,7 +7,7 @@
                     <v-card>
                         <v-flex xs12>
                             <!-- Thumbnail placeholder -->
-                            <!-- <v-card-media v-if="book.imageLinks != null" :src="book.imageLinks.thumbnail" height="225"></v-card-media> -->
+                            <v-card-media src="static/img/icons/android-chrome-192x192.png" height="225" width="150"></v-card-media>
                         </v-flex>
                         <v-card-text>
                             <v-flex xs12>
