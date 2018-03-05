@@ -31,11 +31,11 @@
 - [x] See statistics of how many books you have read
 - [x] See statistics of how many books other users have read
 - [x] Search for other users
+- [ ] Send messages to other users
+- [ ] Upload an avatar
+
 
 ## Bugs
 
-> Similar book - first image not showing up - vuetify bug
-> Missing thumnail on profile page
-> Refactor api for reviews to use mongoose instead of for loops
-> Profile is highlighted when looking at other users profile
-> Book List is highlighted when looking at other users book lists
+Similar book - first image not showing up - vuetify bug
+Refactor api for reviews to use mongoose instead of for loops
