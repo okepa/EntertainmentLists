@@ -22,7 +22,7 @@
                                 <td v-else @click="viewBook(props.item.bookId)" class="click">
                                     {{ props.item.bookRating }}
                                 </td>
-                                <td v-if="!readOnly">
+                                <td v-if="!readOnly" class="text-xs-center">
                                     <v-btn color="error" flat small @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
                             </tr>
@@ -47,7 +47,7 @@
                                 <td v-else @click="viewBook(props.item.bookId)" class="click">
                                     {{ props.item.bookRating }}
                                 </td>
-                                <td v-if="!readOnly">
+                                <td v-if="!readOnly" class="text-xs-center">
                                     <v-btn color="error" flat small @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
                             </tr>
@@ -72,7 +72,7 @@
                                 <td v-else @click="viewBook(props.item.bookId)" class="click">
                                     {{ props.item.bookRating }}
                                 </td>
-                                <td v-if="!readOnly">
+                                <td v-if="!readOnly" class="text-xs-center">
                                     <v-btn color="error" small flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
                             </tr>
@@ -97,7 +97,7 @@
                                 <td v-else @click="viewBook(props.item.bookId)" class="click">
                                     {{ props.item.bookRating }}
                                 </td>
-                                <td v-if="!readOnly">
+                                <td v-if="!readOnly" class="text-xs-center">
                                     <v-btn color="error" small flat @click="deleteFromList(props.item.bookId)">Delete</v-btn>
                                 </td>
                             </tr>

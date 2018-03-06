@@ -5,7 +5,7 @@ import { EventBus } from '../../main'
 
 @Component
 export default class BookList extends Vue {
-    headers = [{text: "Title", value:"title", align: 'left'}, {text: "Author", value:"authors", align: 'left'}, {text: "Publisher", value:"bookPublisher", align: 'left'}, {text: "Rating", value:"rating", align: 'left'} ]
+    headers = [{text: "Title", value:"title", align: 'left'}, {text: "Author", value:"authors", align: 'left'}, {text: "Publisher", value:"bookPublisher", align: 'left'}, {text: "Rating", value:"rating", align: 'left'},{text: "Options", value:"options", align: 'center'}  ]
     readingRating = ["", 1, 2, 3, 4, 5];
     readingBookList = [];
     readBookList = [];

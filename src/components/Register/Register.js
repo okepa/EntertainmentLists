@@ -15,7 +15,12 @@ export default class Login extends Vue {
                     this.registration = { username: "", email: "", password: "", confirmPassword: "" }
                     this.$router.push("/login")
                 }).catch(err => {
-                    EventBus.$emit('toast', { type: "error", text: "Something went wrong" });
+                    if(err.message == "Request failed with status code 409"){
+                        EventBus.$emit('toast', { type: "error", text: "This username already exists" });
+                    } else {
+                        EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
+                    }
+
                 });
             } else {
                 EventBus.$emit('toast', { type: "error", text: "Please fill in required fields" });

@@ -1,4 +1,4 @@
-# list
+# Entertainment List
 
 > You can view and review books and add them to your book list.
 
@@ -47,9 +47,11 @@
 ### Other
 - [ ] Send messages to other users
 - [ ] Upload an avatar
+- [ ] Registration email confirmation
+- [ ] Forgotten email
 
 
 ## Bugs
 
-Similar book - first image not showing up - vuetify bug
-Need to check if the user exists when registering
+* Similar book - first image not showing up - vuetify bug
+* Need to check if the user exists when registering
