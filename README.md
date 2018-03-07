@@ -13,7 +13,7 @@
 - [x] Search for books by title
 - [x] Search for books by author
 - [x] Search for books by publisher
-- [ ] Search for books by genre/category
+- [x] Search for books by genre/category
 
 ### Viewing a book
 - [x] View an individual book
@@ -54,4 +54,4 @@
 ## Bugs
 
 * Similar book - first image not showing up - vuetify bug
-* Need to check if the user exists when registering
+* Check if the email has already been used

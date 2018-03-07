@@ -11,6 +11,7 @@ export default class Books extends Vue {
     title = null;
     author = null;
     publisher = null;
+    category = null;
     startIndex = 0;
     headers = [{ text: "Thumbnail", value: "thumbnail", align: "left" }, { text: "Title", value: "title", align: "left" }, { text: "Author", value: "authors", align: "left" }, { text: "Publisher", value: "publisher", align: "left" }, { text: "Description", value: "description", align: "left" }, { text: "Rating", value: "bookRating", align: "left" }]
     totalItems = 0;
@@ -33,10 +34,16 @@ export default class Books extends Vue {
         if (this.author != null) {
             if (!first) search += `+`;
             search += `inauthor:${this.author}`;
+            first = false;
         }
         if (this.publisher != null) {
             if (!first) search += `+`;
             search += `inpublisher:${this.publisher}`;
+            first = false;
+        }
+        if (this.category != null) {
+            if (!first) search += `+`;
+            search += `subject:${this.category}`;
         }
         if (search != "") {
             BooksHttpRequestsService.getBooksRequest(`${search}&startIndex=${this.startIndex}`).then(result => {
