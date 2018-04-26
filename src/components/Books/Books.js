@@ -59,7 +59,6 @@ export default class Books extends Vue {
                     this.finalBooks = this.books;
                     this.totalItems = result.data.totalItems
                     this.pages = Math.ceil(result.data.totalItems / 10);
-                    console.log(this.finalBooks)
                 });
             }).catch(err => {
                 EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });

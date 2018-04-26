@@ -44,14 +44,14 @@
 ### Users
 - [x] Search for other users
 
-### Other
-- [ ] Send messages to other users
-- [ ] Upload an avatar
+### Email
 - [ ] Registration email confirmation
 - [ ] Forgotten email
 
+### Other
+- [ ] Send messages to other users
+- [ ] Upload an avatar
 
 ## Bugs
 
 * Similar book - first image not showing up - vuetify bug
-* Check if the email has already been used

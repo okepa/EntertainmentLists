@@ -15,6 +15,7 @@ export default class Login extends Vue {
                     this.registration = { username: "", email: "", password: "", confirmPassword: "" }
                     this.$router.push("/login")
                 }).catch(err => {
+                    console.log(err)
                     if(err.message == "Request failed with status code 409"){
                         EventBus.$emit('toast', { type: "error", text: "This username already exists" });
                     } else {
