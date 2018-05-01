@@ -2,7 +2,7 @@
     <v-flex xs5 offset-xs3>
         <v-container align-content-center>
             <v-layout row wrap>
-                <v-flex @keyup.enter="">
+                <v-flex @keyup.enter="sendForgottenEmail">
                     <v-card>
                         <v-card-title primary-title class="headline mb-0">
                             Forgotten Password

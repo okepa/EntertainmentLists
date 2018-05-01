@@ -5,6 +5,7 @@ import Login from '@/components/Login/Login.vue'
 import Register from '@/components/Register/Register.vue'
 import ValidateAccount from '@/components/ValidateAccount/ValidateAccount.vue'
 import ForgottenPassword from '@/components/ForgottenPassword/ForgottenPassword.vue'
+import ChangePassword from '@/components/ChangePassword/ChangePassword.vue'
 import Books from '@/components/Books/Books.vue'
 import Book from '@/components/Book/Book.vue'
 import BookList from '@/components/BookList/BookList.vue'
@@ -45,6 +46,12 @@ export default new Router({
     path: '/forgotten-password',
     name: 'Forgotten Password',
     component: ForgottenPassword,
+    beforeEnter: checkLoginStatus
+  },
+  {
+    path: '/change-password',
+    name: 'Change Password',
+    component: ChangePassword,
     beforeEnter: checkLoginStatus
   },
   {
