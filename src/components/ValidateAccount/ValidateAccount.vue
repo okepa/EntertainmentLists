@@ -6,11 +6,11 @@
                        Account has been successfully activated
                     </v-flex>
                     <v-flex v-else>
-                        Accoutn was not activated please try the link again
+                        Account was not activated please try the link again
                     </v-flex>
                 </v-layout>
             </v-container>
         </v-flex>
 </template>
 
-<script src="./ActivateAccount.js"></script>
+<script src="./ValidateAccount.js"></script>

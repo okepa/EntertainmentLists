@@ -19,7 +19,6 @@
                                     <v-text-field name="Username" label="Username" class="input-group--focused" v-model="registration.username" required :error-messages="errors.collect('Username')"
                                         v-validate="'required'" data-vv-name="Username"></v-text-field>
                                 </v-flex>
-
                             </v-layout>
                             <v-layout row>
                                 <v-flex class="ma-3">

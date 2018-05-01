@@ -4,18 +4,18 @@ import HttpRequestsService from '../../services/HttpRequestsService'
 import { EventBus } from '../../main'
 
 @Component
-export default class ActivateAccount extends Vue {
-    activationCode;
-    activationSuccessful = false;
+export default class ValidateAccount extends Vue {
+    validationCode;
+    validationSuccessful = false;
     
     created() {
-        this.activationCode = this.$route.params.activationcode;
+        this.validationCode = this.$route.params.validationcode;
         this.activateAccount();
     }
 
     activateAccount(){
-        HttpRequestsService.getRequest(`activate-account?activationcode=${this.activationCode}`).then(res => {
-            this.activationSuccessful = true;
+        HttpRequestsService.getRequest(`validate-account?validationcode=${this.validationCode}`).then(res => {
+            this.validationSuccessful = true;
         }).catch(err => {
             EventBus.$emit('toast', { type: "error", text: "Oops something went wrong" });
         });

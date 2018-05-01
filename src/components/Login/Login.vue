@@ -23,10 +23,15 @@
                             </v-flex>
                         </v-layout>
                         <v-layout row>
-                            <v-flex class="ma-3">
+                            <v-flex class="mt-3 mx-3">
                                 <v-btn @click="login" class="primary" dark>Login</v-btn>
                             </v-flex>
                         </v-layout>
+                        <v-layout row>
+                                <v-flex class="ml-3" >
+                                    <v-btn flat small color="primary" to="/forgotten-password">Forgotten Password?</v-btn>
+                                </v-flex>
+                            </v-layout>
                     </v-card-text>
                 </v-card>
             </v-flex>
