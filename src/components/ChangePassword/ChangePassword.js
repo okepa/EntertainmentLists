@@ -5,7 +5,7 @@ import { EventBus } from '../../main'
 
 @Component
 export default class ForgottenPassword extends Vue {
-    changePassword = {username: "", password: "", confirmPassword: ""};
+    changePassword = {validationCode: "", password: ""};
 
     changePassword() {
         this.$validator.validateAll().then((result) => {
